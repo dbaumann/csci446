@@ -1,0 +1,101 @@
+body {
+  background-color: #999;
+}
+
+div#page {
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid #000;
+  
+  width: 1000px;
+  background-color: #FFF;
+  
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div#top_banner,
+div#main_content
+div#sidebar {
+  padding: 8px;
+}
+div#top_banner {
+  background-color: #DDD;
+  font-weight: bold;
+}
+div#top_banner>h1 {
+  margin-bottom: 0px !important;
+}
+div#top_banner>span {
+  font-size: 0.8em;
+  color: #666;
+}
+
+div#navigation_bar {
+  background-color: #000;
+}
+div#navigation_bar a {
+  display: inline-block;
+  padding: 10px;
+  
+  text-decoration: none;
+  
+  color: #FFF;
+  
+  font-size: 1.2em;
+}
+div#navigation_bar a:hover {
+  color: #FF6C1D;
+}
+
+div#main_content {
+  float: left;
+  padding: 8px;
+  
+  font-weight: normal;
+  
+  max-width: 600px;
+}
+div#main_content table.questions td {
+  padding: 0px 3px 14px;
+  vertical-align: top;
+}
+
+div#sidebar {
+  float: right;
+  padding: 12px 5px;
+  
+  width: 350px;
+}
+
+div#footer {
+  clear: both;
+  padding: 10px;
+  
+  text-align: center;
+  font-size: 0.8em;
+}
+
+h2, h3 {
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.6em;
+}
+h3 {
+  font-size: 1.3em;
+}
+
+h1, h2, h3, h4, h5,
+div#top_banner,
+div#navigation_bar {
+  font-weight: bold;
+}
+
+
+
+
