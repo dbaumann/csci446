@@ -3,6 +3,10 @@
   <%=h @product.title %>
 </p>
 
+<p class="product-image">
+  <%= image_tag @product.image_url %>
+</p>
+
 <p>
   <b>Description:</b>
   <%= @product.description %>

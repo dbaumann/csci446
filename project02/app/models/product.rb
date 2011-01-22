@@ -13,6 +13,10 @@ class Product < ActiveRecord::Base
                       :with => %r{\.(gif|jpg|png)$}i, #regex in case-insensitive mode
                       #what about for an email address?
                       :message => "must be a URL for GIF, JPG, or PNG image"
+  
+  validates_length_of :title, :minimum => 10,
+                    :message => "your product description must be atleast 10 " +
+                      "characters long."
 
 protected
 

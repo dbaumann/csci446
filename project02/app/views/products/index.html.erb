@@ -1,27 +1,47 @@
-<h1>Listing products</h1>
+<div id="product-list">
+  <h1>Listing products</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Image URL</th>
-    <th>Price</th>
-    <th colspan="3">&nbsp;</th>
-  </tr>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
 
-<% @products.each do |product| %>
-  <tr>
-    <td><%=h product.title %></td>
-    <td><%= product.description %></td>
-    <td><%=h product.image_url %></td>
-    <td><%=h product.price %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <% @products.each do |product| %>
+    <!-- class="<%= cycle('list-line-odd', 'list-line-even') %>"
+    Chose to do this with CSS3 instead, which wasn't around when this book was written
+    -->
+    <tr>
+      <td>
+        <%= image_tag product.image_url, :class => 'list-image' %>
+      </td>
+      
+      <td class="list-description">
+        <!-- i like the dl: more semantic -->
+        <dl>
+          <dt><%=h product.title %></dr>
+          <dd><%=h truncate(product.description.gsub(/<.*?>/, ''),
+                  :length => 80) %></dd>
+        </dl>
+      </td>
+      
+      <td><%=h '%.2f' % product.price %></td>
+      
+      <td class="list-actions">
+        <%= link_to 'Show', product %>
+        <%= link_to 'Edit', edit_product_path(product) %>
+        <%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %>
+        <!-- above line uses Javascript to create a form on the fly and embed a hidden field to indicate a delete request
+        (DELETE HTTP verb will not be supported in the foreseeable future, as it has mysteriously dissappeared from the latest HTML5 draft:
+        http://dev.w3.org/html5/spec/Overview.html#attr-fs-method
+        ) -->
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 
-<br />
+<br /> <!-- look, a purely presentational element -->
 
 <%= link_to 'New product', new_product_path %>
