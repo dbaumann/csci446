@@ -6,7 +6,10 @@
     <h3><%=h product.title %></h3>
     <p><%= product.description %></p>
     <div class="price-line">
-      <span class="price"><%= product.price %>
+      <!-- helper number_to_currency is defined in or inherited in the class
+      that uses this file, into which the appropriate helpers are mixed in -->
+      <span class="price"><%= number_to_currency(product.price) %></span>
+      <!-- Embedding knowledge of the currency concept into the view -->
     </div>
   </div>
 <% end %>
