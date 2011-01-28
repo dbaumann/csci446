@@ -30,7 +30,8 @@ class StoreController < ApplicationController
     #now the ajax helper method instead
     respond_to do |format| 
       #respond_to yields a format, on which a format method can be called
-      format.js
+      format.js if request.xhr?
+      format.html { redirect_to_index } #pass a block to the html format method
     end
   
   #remember, a rescue applies to the entire function;
@@ -45,7 +46,10 @@ class StoreController < ApplicationController
   
   def empty_cart  #only need to clear the persistent details of the cart
     session[:cart] = nil
-    redirect_to_index
+    respond_to do |format|
+      format.js if request.xhr?
+      format.html { redirect_to_index }
+    end
   end
     
   

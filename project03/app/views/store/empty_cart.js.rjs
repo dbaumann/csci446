@@ -1,0 +1,2 @@
+#expression_to_evaluate if condition
+page[:cart].visual_effect :blind_up
