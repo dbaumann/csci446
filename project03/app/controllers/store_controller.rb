@@ -9,6 +9,8 @@ class StoreController < ApplicationController
     @index_count = session[:counter]
     
     @products = Product.find_products_for_sale
+    
+    @cart = find_cart
   end
   
   def add_to_cart
@@ -21,6 +23,8 @@ class StoreController < ApplicationController
     
     #add action assumed to be successful at this point; reset the count
     session[:counter] = 0
+    
+    redirect_to_index #intervene before the conventional template is used
   
   #remember, a rescue applies to the entire function;
   #kind of like an else, but for functions
@@ -44,8 +48,8 @@ private
     session[:cart] ||= Cart.new
   end
   
-  def redirect_to_index(msg)
-    flash[:notice] = msg  #think of flash as a one-time session
+  def redirect_to_index(msg = nil)
+    flash[:notice] = msg if msg  #think of flash as a one-time session
     redirect_to :action => 'index'
   end
 
