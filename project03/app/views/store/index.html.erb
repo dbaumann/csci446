@@ -13,7 +13,7 @@
       
       <!-- REMEMBER the button_to helper represents an element that will generate a
       POST request -->
-      <%= button_to 'Add to Cart' %>
+      <%= button_to 'Add to Cart', :action => 'add_to_cart', :id => product %>
       <!-- Interesting that it's product and not product.id -->
       
     </div>
