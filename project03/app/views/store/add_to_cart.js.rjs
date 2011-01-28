@@ -1,6 +1,9 @@
 #pass page the id of the element to replace, along with the partial parameters
 page.replace_html('cart', :partial => 'cart', :object => @cart)
 
+#expression_to_evaluate if condition
+page[:cart].visual_effect :blind_down if @cart.total_items == 1
+
 #page implements []. clean
 #so page behaves like a hash of html elements with id attributes
 page[:current_item].visual_effect :highlight,

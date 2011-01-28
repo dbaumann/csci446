@@ -1,4 +1,7 @@
 class StoreController < ApplicationController
+  
+  #these are all actions initiated by the user
+  
   def index
     
     if session[:counter].nil?
@@ -42,7 +45,7 @@ class StoreController < ApplicationController
   
   def empty_cart  #only need to clear the persistent details of the cart
     session[:cart] = nil
-    redirect_to_index("Your cart has been emptied")
+    redirect_to_index
   end
     
   
