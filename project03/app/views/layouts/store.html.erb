@@ -16,6 +16,9 @@
       <a href="http://www..../faq">Questions</a><br />
       <a href="http://www..../news">News</a><br />
       <a href="http://www..../contact">Contact</a><br />
+      <br />
+      <!-- because <p> is more declarative, it's also easier to style -->
+      <p>The current time is <%= current_time %></p>
     </div>
     <div id="main">
       <%= yield :layout %>

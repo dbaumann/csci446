@@ -2,7 +2,7 @@
 
 <% @products.each do |product| -%>
   <div class="entry">
-    <%= image_tag(product.image_url) %>
+    <%= image_submit_tag(product.image_url) %>
     <h3><%=h product.title %></h3>
     <p><%= product.description %></p>
     <div class="price-line">
@@ -10,6 +10,12 @@
       that uses this file, into which the appropriate helpers are mixed in -->
       <span class="price"><%= number_to_currency(product.price) %></span>
       <!-- Embedding knowledge of the currency concept into the view -->
+      
+      <!-- REMEMBER the button_to helper represents an element that will generate a
+      POST request -->
+      <%= button_to 'Add to Cart' %>
+      <!-- Interesting that it's product and not product.id -->
+      
     </div>
   </div>
 <% end %>

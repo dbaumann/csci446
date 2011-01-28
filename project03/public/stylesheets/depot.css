@@ -110,6 +110,11 @@ h1 {
   color: #bfb;
   font-size: small;
 }
+
+#side p {
+    color: orange;
+}
+
 /* END:mainlayout */
 
 /* An entry in the store catalog */
@@ -125,7 +130,8 @@ h1 {
   font-family: sans-serif;
 }
 
-#store .entry img {
+#store .entry img,
+#store .entry input[type=image] {
   width: 75px;
   float: left;
 }
