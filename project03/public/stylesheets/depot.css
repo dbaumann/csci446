@@ -119,7 +119,7 @@ h1 {
     border: 2px solid red;
     padding: 1em;
     margin-bottom: 2em;
-    background-color: #f0f0f0;
+    background-color: #F9FFE5;
     font: bold smaller sans-serif;
 }
 
@@ -142,6 +142,7 @@ h1 {
 #store .entry input[type=image] {
   width: 75px;
   float: left;
+  border: none;
 }
 
 
@@ -169,6 +170,23 @@ h1 {
   font-weight: bold;
   margin-right: 2em;
 }
+
+/* START:cartmain */
+/* Styles for the cart in the main page */
+
+.cart-title {
+  font: 120% bold;
+}
+
+.item-price, .total-line {
+  text-align: right;
+}
+
+.total-line .total-cell {
+  font-weight: bold;
+  border-top: 1px solid #595;
+}
+/* END:cartmain */
 
 /* The error box */
 
