@@ -24,7 +24,11 @@ class StoreController < ApplicationController
     #add action assumed to be successful at this point; reset the count
     session[:counter] = 0
     
-    redirect_to_index #intervene before the conventional template is used
+    #now the ajax helper method instead
+    respond_to do |format| 
+      #respond_to yields a format, on which a format method can be called
+      format.js
+    end
   
   #remember, a rescue applies to the entire function;
   #kind of like an else, but for functions

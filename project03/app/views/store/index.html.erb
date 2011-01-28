@@ -6,7 +6,11 @@
 
 <% @products.each do |product| -%>
   <div class="entry"> 
-    <%= link_to image_tag(product.image_url), :method => :post, :action => 'add_to_cart', :id => product %>
+    
+    <% form_remote_tag :url => { :action => 'add_to_cart', :id => product } do %>
+      <%= image_submit_tag(product.image_url) %>
+    <% end %>
+    
     <h3><%=h product.title %></h3>
     <p><%= product.description %></p>
     <div class="price-line">
@@ -15,11 +19,10 @@
       <span class="price"><%= number_to_currency(product.price) %></span>
       <!-- Embedding knowledge of the currency concept into the view -->
       
-      <!-- REMEMBER the button_to helper represents an element that will generate a
-      POST request -->
-      <%= button_to 'Add to Cart', :action => 'add_to_cart', :id => product %>
-      <!-- Interesting that it's product and not product.id -->
-      
+      <!-- form remote tag accepts a url hash and a block -->
+      <% form_remote_tag :url => { :action => 'add_to_cart', :id => product } do %>
+        <%= submit_tag "Add to Cart" %>
+      <% end %>
     </div>
   </div>
 <% end %>
