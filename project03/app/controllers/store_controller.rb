@@ -19,7 +19,7 @@ class StoreController < ApplicationController
     
     #this is to add a PRODUCT; the controller doesn't care about
     #how the cart deals with the items it's been given
-    @cart.add_product(product)
+    @current_item = @cart.add_product(product)
     
     #add action assumed to be successful at this point; reset the count
     session[:counter] = 0
