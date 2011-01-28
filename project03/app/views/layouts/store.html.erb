@@ -21,6 +21,12 @@
       <p>The current time is <%= current_time %></p>
     </div>
     <div id="main">
+      <!-- the flash message is independent of the controller when placed
+      here in the layout -->
+      <% if flash[:notice] -%>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end -%>
+    
       <%= yield :layout %>
     </div>
   </div>
