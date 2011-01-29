@@ -1,9 +1,5 @@
 module StoreHelper
   
-  def current_time
-    Time.now.strftime("%I:%M%p %Z")
-  end
-  
   def hidden_div_if(condition, attributes = {}, &block)
     if condition
       attributes["style"] = "display: none" #add to the existing set of attributes
