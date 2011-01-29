@@ -12,6 +12,12 @@
 
 </table>
 
-<% form_remote_tag :url => { :action => :empty_cart } do %>
-  <%= submit_tag "Empty cart" %>
-<% end %>
+<% if @checkout_in_progress -%>
+  <%= button_to "Empty Cart", :action => 'empty_cart' %>
+<% else -%>
+  <%= button_to "Checkout", :action => 'checkout' %>
+
+  <% form_remote_tag :url => { :action => 'empty_cart' } do %>
+    <%= submit_tag "Empty cart" %>
+  <% end %>
+<% end -%>

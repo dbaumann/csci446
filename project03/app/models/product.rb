@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
   
+  has_many :line_items
+  
   #these look like method calls outside of a method definition
   validates_presence_of :title, :description, :image_url
   

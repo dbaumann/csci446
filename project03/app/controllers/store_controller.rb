@@ -48,9 +48,34 @@ class StoreController < ApplicationController
     session[:cart] = nil
     respond_to do |format|
       format.js if request.xhr?
-      format.html { redirect_to_index }
+      format.html { redirect_to_index("Your cart has been emptied") } 
     end
   end
+
+  def checkout
+    @cart = find_cart #grab the cart out of the session
+    if @cart.items.empty?
+      redirect_to_index("Your cart is empty")
+    else
+      @order = Order.new  #only for the sake of consistency in the checkout form
+    end
+    
+    @checkout_in_progress = true
+  end
+  
+  def save_order
+    @cart = find_cart
+    @order = Order.new(params[:order])  #create the basic order with customer info
+    #transition data from front-end model to back-end model:
+    @order.add_line_items_from_cart(@cart)  #add selected items to the order
+    if @order.save  #attempt to persist the model here
+      session[:cart] = nil  #empty the cart
+      redirect_to_index("Thank you for your order") #success!
+    else
+      render :action => 'checkout'  #back to the order form; something was wrong
+      #one action choosing to use another's view; this is different than an HTTP redirect
+    end
+  end  
     
   
 private

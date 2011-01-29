@@ -1,3 +1,6 @@
+#search the page for a div to hide; don't assume that it's there
+page.select("div#notice").each { |div| div.hide }
+
 #pass page the id of the element to replace, along with the partial parameters
 page.replace_html('cart', :partial => 'cart', :object => @cart)
 
