@@ -1,8 +1,10 @@
 class StoreController < ApplicationController
   
+  before_filter :find_cart, :except => :empty_cart
+  
   #override the authorize filter; this controller is now authorized automatically
   def authorize; end
-  
+
   #these are all actions initiated by the user
   
   def index
@@ -15,13 +17,10 @@ class StoreController < ApplicationController
     @index_count = session[:counter]
     
     @products = Product.find_products_for_sale
-    
-    @cart = find_cart
   end
   
   def add_to_cart
     product = Product.find(params[:id])
-    @cart = find_cart
     
     #this is to add a PRODUCT; the controller doesn't care about
     #how the cart deals with the items it's been given
@@ -39,6 +38,7 @@ class StoreController < ApplicationController
   
   #remember, a rescue applies to the entire function;
   #kind of like an else, but for functions
+  #however, exceptions can also be raised and rescued within methods using begin/end
   rescue ActiveRecord::RecordNotFound
   #class-level access to an inner class, which exists as a class constant of ActiveRecord
     
@@ -56,7 +56,6 @@ class StoreController < ApplicationController
   end
 
   def checkout
-    @cart = find_cart #grab the cart out of the session
     if @cart.items.empty?
       redirect_to_index("Your cart is empty")
     else
@@ -67,7 +66,6 @@ class StoreController < ApplicationController
   end
   
   def save_order
-    @cart = find_cart
     @order = Order.new(params[:order])  #create the basic order with customer info
     #transition data from front-end model to back-end model:
     @order.add_line_items_from_cart(@cart)  #add selected items to the order
@@ -84,7 +82,7 @@ class StoreController < ApplicationController
 private
   
   def find_cart
-    session[:cart] ||= Cart.new
+    @cart = (session[:cart] ||= Cart.new)
   end
   
   def redirect_to_index(msg = nil)

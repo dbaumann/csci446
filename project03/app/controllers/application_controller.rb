@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   #with the exception of the login method
   before_filter :authorize, :except => :login
   
+  #define the default layout for all controllers
+  layout 'store' #can't use a Symbol here; interesting
+  
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 

@@ -32,6 +32,13 @@ class User < ActiveRecord::Base
     user
   end
   
+  #hook definition
+  def after_destroy
+    if User.count.zero?
+      raise "Can't delete last user"
+    end
+  end
+  
 private
   
   def self.encrypted_password(password, salt)

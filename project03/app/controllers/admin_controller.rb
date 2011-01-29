@@ -1,5 +1,9 @@
 class AdminController < ApplicationController
   
+  def self.filter(controller)
+    @page_title = "The Admin"
+  end
+  
   def login
     if request.post?  #handle the postback request
       user = User.authenticate(params[:name], params[:password])
@@ -15,6 +19,9 @@ class AdminController < ApplicationController
   end
 
   def logout
+    session[:user_id] = nil
+    flash[:notice] = "Logged out"
+    redirect_to(:action => 'login')
   end
 
   def index
