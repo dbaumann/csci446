@@ -1,5 +1,8 @@
 class StoreController < ApplicationController
   
+  #override the authorize filter; this controller is now authorized automatically
+  def authorize; end
+  
   #these are all actions initiated by the user
   
   def index

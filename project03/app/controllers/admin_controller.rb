@@ -10,6 +10,8 @@ class AdminController < ApplicationController
         flash.now[:notice] = "Invalid user/password combination"
       end
     end
+    #otherwise, just fall through to the view, which will prompt the user for info,
+    #which will be POSTed back here
   end
 
   def logout
