@@ -6,6 +6,10 @@ h1 {
         border-bottom: 3px dotted #77d;
 }
 
+body {
+    margin: 0px;
+}
+
 /* Styles for products/index */
 
 .product-image {
@@ -280,3 +284,10 @@ h1 {
   font-size: 12px;
   list-style: square;
 }
+
+/* START:i18n */
+.locale {
+        float:right;
+        padding-top: 0.2em
+}
+/* END:i18n */

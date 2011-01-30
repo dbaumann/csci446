@@ -1,4 +1,4 @@
-<h1>Your Catalog</h1>
+<h1><%= I18n.t 'main.title' %></h1>
 
 <% if @index_count > 5 %>
 <p>you've visited this page <%= pluralize(@index_count, "time") %>!</p>
@@ -21,7 +21,7 @@
       
       <!-- form remote tag accepts a url hash and a block -->
       <% form_remote_tag :url => { :action => 'add_to_cart', :id => product } do %>
-        <%= submit_tag "Add to Cart" %>
+        <%= submit_tag I18n.t('main.button.add') %>
       <% end %>
     </div>
   </div>

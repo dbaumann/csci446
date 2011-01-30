@@ -2,14 +2,23 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <title>Pragprog Books Online Store</title>
   <%= stylesheet_link_tag "depot", :media => "all" %>
   <%= javascript_include_tag :defaults %>
 </head>
 <body id="store">
   <div id="banner">
+    <% form_tag '', :method => 'GET', :class => 'locale' do %>
+      <%= select_tag 'locale', options_for_select(LANGUAGES, I18n.locale.to_s),
+        :onchange => 'this.form.submit()' %>
+      <%= submit_tag 'submit' %>
+      <!-- for hiding the submit button when javascript is enabled: -->
+      <%= javascript_tag "$$('.locale input').each(Element.hide)" %>
+    <% end %>
+    
     <%= image_tag("logo.png") %>
-    <%= @page_title || "The Bookshelf" %>
+    <%= @page_title || I18n.t('layout.title') %>
   </div>
   <div id="columns">
     <div id="side">
@@ -19,10 +28,10 @@
         <% end %>  
       <% end -%>
     
-      <a href="http://www....">Home</a><br />
-      <a href="http://www..../faq">Questions</a><br />
-      <a href="http://www..../news">News</a><br />
-      <a href="http://www..../contact">Contact</a><br />
+      <a href="http://www...."><%= I18n.t 'layout.side.home' %></a><br />
+      <a href="http://www..../faq"><%= I18n.t 'layout.side.questions' %></a><br />
+      <a href="http://www..../news"><%= I18n.t 'layout.side.news' %></a><br />
+      <a href="http://www..../contact"><%= I18n.t 'layout.side.contact' %></a><br />
       <br />
       <!-- because <p> is more declarative, it's also easier to style -->
       <p>The current time is <%= current_time %></p>
