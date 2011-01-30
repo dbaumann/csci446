@@ -1,9 +1,6 @@
 class StoreController < ApplicationController
   
   before_filter :find_cart, :except => :empty_cart
-  
-  #override the authorize filter; this controller is now authorized automatically
-  def authorize; end
 
   #these are all actions initiated by the user
   
@@ -76,8 +73,13 @@ class StoreController < ApplicationController
       render :action => 'checkout'  #back to the order form; something was wrong
       #one action choosing to use another's view; this is different than an HTTP redirect
     end
-  end  
-    
+  end
+  
+protected
+
+  #override the authorize filter; this controller is now authorized automatically
+  def authorize
+  end
   
 private
   
