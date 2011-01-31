@@ -1,7 +1,7 @@
 <h1><%= I18n.t 'main.title' %></h1>
 
 <% if @index_count > 5 %>
-<p>you've visited this page <%= pluralize(@index_count, "time") %>!</p>
+<p><%= I18n.t 'main.repeat_visit' %></p>
 <% end %>
 
 <% @products.each do |product| -%>

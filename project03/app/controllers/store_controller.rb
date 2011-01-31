@@ -41,20 +41,20 @@ class StoreController < ApplicationController
     
     #is logger really an attribute?
     logger.error("Attempt to access invalid product #{params[:id]}")
-    redirect_to_index("Invalid product")
+    redirect_to_index(I18n.t('flash.invalid_product'))
   end
   
   def empty_cart  #only need to clear the persistent details of the cart
     session[:cart] = nil
     respond_to do |format|
       format.js if request.xhr?
-      format.html { redirect_to_index("Your cart has been emptied") } 
+      format.html { redirect_to_index(I18n.t('flash.emptied_cart')) } 
     end
   end
 
   def checkout
     if @cart.items.empty?
-      redirect_to_index("Your cart is empty")
+      redirect_to_index(I18n.t('flash.empty_cart'))
     else
       @order = Order.new  #only for the sake of consistency in the checkout form
     end
@@ -70,6 +70,7 @@ class StoreController < ApplicationController
       session[:cart] = nil  #empty the cart
       redirect_to_index(I18n.t('flash.thanks')) #success!
     else
+      @checkout_in_progress = true
       render :action => 'checkout'  #back to the order form; something was wrong
       #one action choosing to use another's view; this is different than an HTTP redirect
     end

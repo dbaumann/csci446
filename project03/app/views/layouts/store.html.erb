@@ -34,7 +34,7 @@
       <a href="http://www..../contact"><%= I18n.t 'layout.side.contact' %></a><br />
       <br />
       <!-- because <p> is more declarative, it's also easier to style -->
-      <p>The current time is <%= current_time %></p>
+      <p><%= I18n.t 'layout.side.current_time' %>:<br /><%= current_time %></p>
       
       <% if session[:user_id] %>
         <br />

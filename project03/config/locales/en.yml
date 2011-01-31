@@ -25,12 +25,13 @@ en:
 #START:cart
   layout:
 #END:cart
-    title:       "Pragmatic Bookshelf"
+    title:          "Pragmatic Bookshelf"
     side:
-      home:      "Home"
-      questions: "Questions"
-      news:      "News"
-      contact:   "Contact"
+      home:         "Home"
+      questions:    "Questions"
+      news:         "News"
+      contact:      "Contact"
+      current_time: "Current time"
 #END:layout
 #START:cart
     cart:
@@ -42,9 +43,10 @@ en:
 
 #START:main
   main:
-    title:       "Your Pragmatic Catalog"
+    title:        "Your Pragmatic Catalog"
+    repeat_visit: "You've requested this page many times!"
     button:
-      add:       "Add to Cart"
+      add:        "Add to Cart"
 #END:main
 
 #START:checkout
@@ -60,5 +62,9 @@ en:
 
 #START:flash
   flash:
-    thanks:      "Thank you for your order"
+    thanks:           "Thank you for your order"
+    invalid_product:  "Invalid product"
+    emptied_cart:     "Your cart has been emptied"
+    empty_cart:       "Your cart is empty"
+    
 #END:flash
