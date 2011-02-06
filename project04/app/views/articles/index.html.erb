@@ -1,26 +1,40 @@
-<h1>Listing articles</h1>
+<h1>All the World's Articles</h1>
+<%= link_to( image_tag('silk_icons/add.png') + ' Create an Article', {:action => 'new'}, {:id => 'create-new', :title => 'Upload an article'}) %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Author Name</th>
-    <th>Body</th>
-    <th>Creation Date</th>
-  </tr>
+<% if @articles.size > 0 -%>
+<table id="article-list">
+  <thead>
+    <tr>
+      <th><div>Title</div></th>
+      <th><div>Author Name</div></th>
+      <th><div>Body</div></th>
+      <th><div>Creation Date</div></th>
+      <th class="action-col"><div>&nbsp;</div></th>
+    </tr>
+  </thead>
 
-<% @articles.each do |article| %>
-  <tr>
-    <td><%=h article.title %></td>
-    <td><%=h article.author_name %></td>
-    <td><%=h truncate(article.body, 40, '...')  %></td>
-    <td><%=h article.created_at %></td>
-    <td><%= link_to 'Show', article %></td>
-    <td><%= link_to 'Edit', edit_article_path(article) %></td>
-    <td><%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td class="title-col"><div><%=h article.title %></div></td>
+      <td class="author-col"><div><%=h article.author_name %></div></td>
+      <td class="body-col"><div><%=h truncate(article.body, 50, '...')  %></div></td>
+      <td class="create-date-col"><div><%=h article.created_at %></div></td>
+      <td class="action-col"><div>
+        <%= link_to image_tag('silk_icons/zoom.png'),
+             {:action => 'show', :id => article},
+             {:alt => 'Show', :title => 'View this article'} %>
+        <%= link_to image_tag('silk_icons/pencil.png'),
+             {:action => 'edit', :id => article},
+             {:alt => 'Edit', :title => 'Modify this article'} %>
+        <%= link_to(image_tag('silk_icons/bin_closed.png'),
+              {:action => 'destroy', :id => article},
+              {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this article'}) %>
+      </div></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
+<% end -%>
 
-<br />
-
-<%= link_to 'New article', new_article_path %>
+<p><%= pluralize(@articles.size, "article") %>.</p>

@@ -1,0 +1,91 @@
+body {
+  font-family: "Trebuchet MS";
+  
+  padding: 30px 10px 0px;
+}
+
+a img {
+  border: 0px;
+}
+
+p {
+  margin: 1em 0px;
+}
+
+#banner {
+  text-align: center;
+  margin-bottom: 3em;
+}
+#page-title {
+  font-size: 4em;
+}
+#page-subtitle {
+  margin: 0px;
+}
+
+h1 {
+  font-size: 2em;
+  display: inline-block;
+  width: 50%;
+}
+
+#create-new {
+  display: inline-block;
+  text-decoration: none;
+}
+
+#article-list {
+  margin: 2em 0px;
+}
+#article-list .title-col {
+  width: 20%;
+}
+#article-list .body-col {
+  width: 40%;
+}
+#article-list .action-col {
+  border: none !important;
+  background-color: #FFF !important;
+  vertical-align: top;
+  /* 3 * 16px + padding + border + scrollbar_width */
+  width: 85px;
+}
+#article-list th {
+  background-color: #999;
+  font-weight: bold;
+  text-align: left;
+}
+#article-list td {
+  height: 3em;
+}
+#article-list tbody {
+  /* 10 * article-list_height */
+  height: 35em;
+  /* overflow-x not supported properly by IE */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#article-list tbody tr:nth-child(even) {
+  background-color: #FFF;
+}
+#article-list tbody tr:nth-child(odd) {
+  background-color: #FFD452;
+}
+/* borders */
+#article-list tr th div,
+#article-list tr td div {
+  height: 100%;
+  padding: 0.25em;
+  border-left: 1px solid #000;
+}
+#article-list tr th div {
+  border-top: 1px solid #000;
+}
+#article-list tr:last-child td div {
+  border-bottom: 1px solid #000;
+}
+#article-list tr th.action-col div,
+#article-list tr td.action-col div {
+  border-top: none;
+  border-bottom: none;
+}
