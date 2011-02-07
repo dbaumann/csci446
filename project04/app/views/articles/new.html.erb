@@ -1,27 +1,27 @@
-<h1>New article</h1>
+<% content_for :body_tag do %>
+    <body id="articles-create">
+<% end %>
+
+<%= link_to( image_tag('silk_icons/arrow_left.png') + ' list all articles',
+    {:action => :index},
+    {:id => 'create-new', :title => 'Go back to list of articles', :class => 'top-link'}) %>
+<br />
+<h1>Creating a New Article</h1>
 
 <% form_for(@article) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :author_name %><br />
-    <%= f.text_field :author_name %>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.label :change_count %><br />
-    <%= f.text_field :change_count %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+  <%= f.error_messages %>
 
-<%= link_to 'Back', articles_path %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br />
+  
+  <%= f.label :author_name %>
+  <%= f.text_field :author_name %><br />
+  
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  
+  <%= f.submit 'Create!' %>
+
+<% end %>

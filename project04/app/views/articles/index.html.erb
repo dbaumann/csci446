@@ -1,5 +1,10 @@
+<% content_for :body_tag do %>
+    <body id="articles-index">
+<% end %>
 <h1>All the World's Articles</h1>
-<%= link_to( image_tag('silk_icons/add.png') + ' Create an Article', {:action => 'new'}, {:id => 'create-new', :title => 'Upload an article'}) %>
+<%= link_to( image_tag('silk_icons/add.png') + ' Create an Article',
+    {:action => 'new'},
+    {:id => 'create-new', :title => 'Upload an article'}) %>
 
 <% if @articles.size > 0 -%>
 <table id="article-list">
@@ -18,18 +23,18 @@
     <tr>
       <td class="title-col"><div><%=h article.title %></div></td>
       <td class="author-col"><div><%=h article.author_name %></div></td>
-      <td class="body-col"><div><%=h truncate(article.body, 50, '...')  %></div></td>
-      <td class="create-date-col"><div><%=h article.created_at %></div></td>
+      <td class="body-col"><div><%=h truncate(article.body, 100, '...')  %></div></td>
+      <td class="create-date-col"><div><%= article.created_at.to_s(:human_with_weekday) %></div></td>
       <td class="action-col"><div>
         <%= link_to image_tag('silk_icons/zoom.png'),
-             {:action => 'show', :id => article},
-             {:alt => 'Show', :title => 'View this article'} %>
+            {:action => 'show', :id => article},
+            {:alt => 'Show', :title => 'View this article'} %>
         <%= link_to image_tag('silk_icons/pencil.png'),
-             {:action => 'edit', :id => article},
-             {:alt => 'Edit', :title => 'Modify this article'} %>
+            {:action => 'edit', :id => article},
+            {:alt => 'Edit', :title => 'Modify this article'} %>
         <%= link_to(image_tag('silk_icons/bin_closed.png'),
-              {:action => 'destroy', :id => article},
-              {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this article'}) %>
+            {:action => 'destroy', :id => article},
+            {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this article'}) %>
       </div></td>
     </tr>
   <% end %>

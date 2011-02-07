@@ -7,7 +7,7 @@
   <title>Articl.es -- All the Worlds's Articles (with a name .com hipsters live)</title>
   <%= stylesheet_link_tag 'reset', 'articles' %>
 </head>
-<body>
+<%= yield :body_tag or "<body>" %>
   <div id="banner">
     <div id="page-title"><%= @page_title || "Articl.es" %></div>
     <p id="page-subtitle"><%= @page_subtitle || "...with a name .com hipsters love!" %></p>

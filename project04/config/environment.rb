@@ -39,3 +39,6 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
+Time::DATE_FORMATS[:human_with_weekday] = "%A, %b. %d %Y"
+Time::DATE_FORMATS[:human] = "%b. %d, %Y"

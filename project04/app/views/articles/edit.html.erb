@@ -1,28 +1,24 @@
-<h1>Editing article</h1>
+<% content_for :body_tag do %>
+    <body id="articles-edit">
+<% end %>
+
+<%= link_to( image_tag('silk_icons/arrow_left.png') + ' back',
+    session[:last_visited_page],
+    {:title => 'Go back to previous page', :class => 'top-link'}) %>
+<br />
+<h1>Editing "<%= @article.title %>"</h1>
 
 <% form_for(@article) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :author_name %><br />
-    <%= f.text_field :author_name %>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.label :change_count %><br />
-    <%= f.text_field :change_count %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br />
+  
+  <%= f.label :author_name %>
+  <%= f.text_field :author_name %><br />
+  
+  <%= f.label :body %>
+  <%= f.text_area :body %>
 
-<%= link_to 'Show', @article %> |
-<%= link_to 'Back', articles_path %>
+  <%= f.submit 'Save Changes' %>
+<% end %>

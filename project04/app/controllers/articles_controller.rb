@@ -14,6 +14,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1.xml
   def show
     @article = Article.find(params[:id])
+    @page_subtitle = "... what's \"Articl\" in Spanish anyway?"
+    @page_url = request.url
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.xml
   def new
     @article = Article.new
+    @page_subtitle = "... not just for the country of Spain"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +38,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
+    @page_subtitle = "... my cousin works for Bit.ly"
+    session[:last_visited_page] = request.env['HTTP_REFERER']
   end
 
   # POST /articles

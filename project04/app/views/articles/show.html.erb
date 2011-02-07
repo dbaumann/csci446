@@ -1,23 +1,24 @@
-<p>
-  <b>Title:</b>
-  <%=h @article.title %>
-</p>
+<% content_for :body_tag do %>
+    <body id="articles-show">
+<% end %>
+<%= link_to( image_tag('silk_icons/arrow_left.png') + ' list all articles',
+    {:action => :index},
+    {:id => 'create-new', :title => 'Go back to list of articles', :class => 'top-link'}) %>
+    
+<%= link_to image_tag('silk_icons/pencil.png') + ' edit',
+    {:action => 'edit', :id => @article},
+    {:alt => 'Edit', :title => 'Modify this article', :class => 'top-link'} %>
+    
+<%= link_to(image_tag('silk_icons/bin_closed.png') + ' delete',
+    {:action => 'destroy', :id => @article},
+    {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this article', :class => 'top-link'}) %>
+    
+<%= mail_to("",  
+    image_tag('silk_icons/email.png') + ' email',
+    {:subject => @article.title, :body => @page_url, :class => 'top-link'}) %>
+<br />
+<h1><%=h @article.title %></h1>
 
-<p>
-  <b>Author name:</b>
-  <%=h @article.author_name %>
-</p>
+<h3><%=h "by %s. %d edits since %s." % [@article.author_name, @article.change_count, @article.created_at.to_s(:human)] %></h3>
 
-<p>
-  <b>Body:</b>
-  <%= wrap_in_paragraphs(@article.body) %>
-</p>
-
-<p>
-  <b>Change count:</b>
-  <%=h @article.change_count %>
-</p>
-
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<%= wrap_in_paragraphs(@article.body) %>

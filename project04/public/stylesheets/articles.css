@@ -1,3 +1,4 @@
+/* general styles */
 body {
   font-family: "Trebuchet MS";
   
@@ -25,67 +26,110 @@ p {
 
 h1 {
   font-size: 2em;
-  display: inline-block;
-  width: 50%;
+  float: left;
+  margin-bottom: 15px;
 }
+h3 {
+  font-size: 1.2em;
+  clear: left;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+/* END general styles */
 
-#create-new {
-  display: inline-block;
+
+/* index styles */
+#articles-index #create-new {
+  line-height: 2em;
+  display: block;
+  float: left;
   text-decoration: none;
+  margin: 0px 100px;
 }
 
-#article-list {
+#articles-index #article-list {
+  clear: left;
   margin: 2em 0px;
 }
-#article-list .title-col {
+#articles-index #article-list .title-col {
   width: 20%;
 }
-#article-list .body-col {
-  width: 40%;
+#articles-index #article-list .body-col {
+  width: 38%;
 }
-#article-list .action-col {
+#articles-index #article-list .action-col {
   border: none !important;
   background-color: #FFF !important;
-  vertical-align: top;
+  vertical-align: middle;
   /* 3 * 16px + padding + border + scrollbar_width */
   width: 85px;
 }
-#article-list th {
+#articles-index #article-list th {
   background-color: #999;
   font-weight: bold;
   text-align: left;
+  padding: 0.25em;
 }
-#article-list td {
-  height: 3em;
+#articles-index #article-list td {
+  height: 3.5em;
+  padding: 0.25em;
 }
-#article-list tbody {
+#articles-index #article-list tbody {
   /* 10 * article-list_height */
   height: 35em;
   /* overflow-x not supported properly by IE */
   overflow-y: auto;
   overflow-x: hidden;
 }
-#article-list tbody tr:nth-child(even) {
-  background-color: #FFF;
+#articles-index #article-list tbody tr:nth-child(even) {
+  background-color: #EDEDED;
 }
-#article-list tbody tr:nth-child(odd) {
+#articles-index #article-list tbody tr:nth-child(odd) {
   background-color: #FFD452;
 }
-/* borders */
-#article-list tr th div,
-#article-list tr td div {
-  height: 100%;
-  padding: 0.25em;
-  border-left: 1px solid #000;
+/* END index styles */
+
+
+/* show/edit/create styles */
+#articles-show .top-link,
+#articles-edit .top-link,
+#articles-create .top-link {
+  display: inline-block;
+  margin-right: 5em;
+  
+  text-decoration: none;
+  margin-bottom: 2em;
+  
 }
-#article-list tr th div {
-  border-top: 1px solid #000;
+
+#articles-edit label,
+#articles-create label {
+  width: 9em;
+  display: block;
+  clear: left;
+  float: left;
+  font-size: 1em;
+  margin-bottom: 2em;
+  margin-right: 2em;
+  text-align: right;
 }
-#article-list tr:last-child td div {
-  border-bottom: 1px solid #000;
+#articles-edit input,
+#articles-edit textarea,
+#articles-create input,
+#articles-create textarea {
+  margin-bottom: 2em;
 }
-#article-list tr th.action-col div,
-#article-list tr td.action-col div {
-  border-top: none;
-  border-bottom: none;
+#articles-edit textarea,
+#articles-create textarea {
+  width: 40em;
 }
+#articles-edit input[type="submit"],
+#articles-create input[type="submit"] {
+  display: block;
+  margin-left: 12em;
+}
+#articles-edit form,
+#articles-create form {
+  padding-top: 70px;
+}
+/* END show/edit/create styles */
