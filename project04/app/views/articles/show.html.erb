@@ -15,10 +15,10 @@
     
 <%= mail_to("",  
     image_tag('silk_icons/email.png') + ' email',
-    {:subject => @article.title, :body => @page_url, :class => 'top-link'}) %>
+    {:subject => @article.title, :body => @page_url, :class => 'top-link', :title => 'Tell a friend about this article'}) %>
 <br />
 <h1><%=h @article.title %></h1>
 
-<h3><%=h "by %s. %d edits since %s." % [@article.author_name, @article.change_count, @article.created_at.to_s(:human)] %></h3>
+<h3><%=h "by %s. %s since %s." % [@article.author_name, pluralize(@article.change_count, 'edit'), @article.created_at.to_s(:human)] %></h3>
 
-<%= wrap_in_paragraphs(@article.body) %>
+<%= wrap_links wrap_in_paragraphs(@article.body) %>

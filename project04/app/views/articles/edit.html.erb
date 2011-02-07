@@ -6,7 +6,7 @@
     session[:last_visited_page],
     {:title => 'Go back to previous page', :class => 'top-link'}) %>
 <br />
-<h1>Editing "<%= @article.title %>"</h1>
+<h1>Editing "<%= @article_title %>"</h1>
 
 <% form_for(@article) do |f| %>
   <%= f.error_messages %>

@@ -34,14 +34,7 @@ class ArticlesController < ApplicationController
       format.xml  { render :xml => @article }
     end
   end
-
-  # GET /articles/1/edit
-  def edit
-    @article = Article.find(params[:id])
-    @page_subtitle = "... my cousin works for Bit.ly"
-    session[:last_visited_page] = request.env['HTTP_REFERER']
-  end
-
+  
   # POST /articles
   # POST /articles.xml
   def create
@@ -58,14 +51,31 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # GET /articles/1/edit
+  def edit
+    @article = Article.find(params[:id])
+    @page_subtitle = "... my cousin works for Bit.ly"
+    session[:last_visited_page] = request.env['HTTP_REFERER']
+    #view depends on this incase the title is cleared by user and there's an error
+    @article_title = @article.title
+  end
+
   # PUT /articles/1
   # PUT /articles/1.xml
   def update
     @article = Article.find(params[:id])
-
+    @page_subtitle = "... my cousin works for Bit.ly"
+    
+    #overwritten by update_attributes() (potentially blank)
+    @article_title = @article.title
+    
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
+        #wonder how to sync changes with the model BEFORE save
+        #then I could use @article.changed?
+        @article.increment!(:change_count)
+        
+        format.html { redirect_to(session[:last_visited_page]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

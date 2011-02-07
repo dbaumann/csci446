@@ -10,22 +10,26 @@
 <table id="article-list">
   <thead>
     <tr>
-      <th><div>Title</div></th>
-      <th><div>Author Name</div></th>
-      <th><div>Body</div></th>
-      <th><div>Creation Date</div></th>
-      <th class="action-col"><div>&nbsp;</div></th>
+      <th class="title-col">Title</th>
+      <th class="author-col">Author Name</th>
+      <th class="body-col">Body</th>
+      <th class="create-date-col">Creation Date</th>
+      <th class="action-col">&nbsp;</th>
     </tr>
   </thead>
-
+  
+  <% if @articles.size >= 10 -%>
+  <tbody class="maxed">
+  <% else -%>
   <tbody>
+  <% end -%>
   <% @articles.each do |article| %>
     <tr>
-      <td class="title-col"><div><%=h article.title %></div></td>
-      <td class="author-col"><div><%=h article.author_name %></div></td>
-      <td class="body-col"><div><%=h truncate(article.body, 100, '...')  %></div></td>
-      <td class="create-date-col"><div><%= article.created_at.to_s(:human_with_weekday) %></div></td>
-      <td class="action-col"><div>
+      <td class="title-col"><%=h article.title %></td>
+      <td class="author-col"><%=h article.author_name %></td>
+      <td class="body-col"><%=h truncate(article.body, {100, '...'})  %></td>
+      <td class="create-date-col"><%= article.created_at.to_s(:human_with_weekday) %></td>
+      <td class="action-col">
         <%= link_to image_tag('silk_icons/zoom.png'),
             {:action => 'show', :id => article},
             {:alt => 'Show', :title => 'View this article'} %>
@@ -35,11 +39,11 @@
         <%= link_to(image_tag('silk_icons/bin_closed.png'),
             {:action => 'destroy', :id => article},
             {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this article'}) %>
-      </div></td>
+      </td>
     </tr>
   <% end %>
   </tbody>
 </table>
 <% end -%>
 
-<p><%= pluralize(@articles.size, "article") %>.</p>
+<p id="article-count"><%= pluralize(@articles.size, "article") %>.</p>
