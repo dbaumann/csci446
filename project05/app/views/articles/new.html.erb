@@ -2,24 +2,25 @@
     <body id="articles-create">
 <% end %>
 
-<%= link_to( image_tag('silk_icons/arrow_left.png') + ' list all articles',
+<% content_for :subtitle do %>
+&hellip; not just for the country of Spain
+<% end %>
+
+<ul id="options-basic">
+  <li>
+  <%= link_to(
+    image_tag('icons/arrow_left.png') + ' list all articles',
     {:action => :index},
-    {:id => 'create-new', :title => 'Go back to list of articles', :class => 'top-link'}) %>
-<br />
+    {:title => 'Go back to list of articles', :class => 'top-link'}) %>
+  </li>
+</ul>
+
 <h1>Creating a New Article</h1>
 
-<% form_for(@article) do |f| %>
-  <%= f.error_messages %>
+<% form_for(@article) do |f| -%>
+<%= render :partial => 'form', :locals => {:f => f} %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %><br />
-  
-  <%= f.label :author_name %>
-  <%= f.text_field :author_name %><br />
-  
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-  
-  <%= f.submit 'Create!' %>
-
-<% end %>
+<p>
+<%= f.submit 'Create!' %>
+</p>
+<% end -%>

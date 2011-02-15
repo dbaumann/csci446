@@ -1,10 +1,12 @@
-<% content_for :body_tag do %>
-    <body id="articles-index">
-<% end %>
 <h1>All the World's Articles</h1>
-<%= link_to( image_tag('silk_icons/add.png') + ' Create an Article',
+
+<ul id="options-basic">
+  <li>
+  <%= link_to( image_tag('icons/add.png') + ' Create an Article',
     {:action => 'new'},
-    {:id => 'create-new', :title => 'Upload an article'}) %>
+    {:title => 'Upload an article', :class => 'top-link'}) %>
+  </li>
+</ul>
 
 <% if @articles.size > 0 -%>
 <table id="article-list">
@@ -17,6 +19,13 @@
       <th class="action-col">&nbsp;</th>
     </tr>
   </thead>
+  <tfoot>
+    <tr>
+      <td colspan="5">
+        <p><%= pluralize(@articles.size, "article") %>.</p>
+      </td>
+    </tr>
+  </tfoot>
   
   <% if @articles.size >= 10 -%>
   <tbody class="maxed">
@@ -30,13 +39,13 @@
       <td class="body-col"><%=h truncate(article.body, {100, '...'})  %></td>
       <td class="create-date-col"><%= article.created_at.to_s(:human_with_weekday) %></td>
       <td class="action-col">
-        <%= link_to image_tag('silk_icons/zoom.png'),
+        <%= link_to image_tag('icons/zoom.png'),
             {:action => 'show', :id => article},
             {:alt => 'Show', :title => 'View this article'} %>
-        <%= link_to image_tag('silk_icons/pencil.png'),
+        <%= link_to image_tag('icons/pencil.png'),
             {:action => 'edit', :id => article},
             {:alt => 'Edit', :title => 'Modify this article'} %>
-        <%= link_to(image_tag('silk_icons/bin_closed.png'),
+        <%= link_to(image_tag('icons/bin_closed.png'),
             {:action => 'destroy', :id => article},
             {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this article'}) %>
       </td>
@@ -45,5 +54,3 @@
   </tbody>
 </table>
 <% end -%>
-
-<p id="article-count"><%= pluralize(@articles.size, "article") %>.</p>

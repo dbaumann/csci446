@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Articl.es -- All the Worlds's Articles (with a name .com hipsters love)</title>
+  <%= stylesheet_link_tag 'reset', 'screen' %>
+</head>
+<body class="<%= controller.action_name %>" id="<%= controller.controller_name %>">
+  <div id="banner">
+    <div id="page-title"><%= @page_title || "Articl.es" %></div>
+    <p id="page-subtitle"><%= yield :subtitle or "...with a name .com hipsters love!" %></p>
+  </div>
+  
+  <% flash.each do |key, msg| %>
+    <div class="flash <%= key %>"><p><%= msg %></p></div>
+  <% end %>
+
+  <div id="content">
+    <%= yield %>
+  </div>
+
+</body>
+</html>

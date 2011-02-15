@@ -1,98 +1,73 @@
 class ArticlesController < ApplicationController
+  
+  before_filter :set_edit_return_url, :only => [:edit]
+  before_filter :preserve_article_title, :only => [:edit, :update]
+  
   # GET /articles
-  # GET /articles.xml
   def index
     @articles = Article.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @articles }
-    end
-  end
-
-  # GET /articles/1
-  # GET /articles/1.xml
-  def show
-    @article = Article.find(params[:id])
-    @page_subtitle = "... what's \"Articl\" in Spanish anyway?"
-    @page_url = request.url
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @article }
-    end
   end
 
   # GET /articles/new
-  # GET /articles/new.xml
   def new
     @article = Article.new
-    @page_subtitle = "... not just for the country of Spain"
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @article }
-    end
   end
   
   # POST /articles
-  # POST /articles.xml
   def create
     @article = Article.new(params[:article])
 
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to(@article, :notice => 'Article was successfully created.') }
-        format.xml  { render :xml => @article, :status => :created, :location => @article }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
-      end
+    if @article.save
+      redirect_to(@article, :flash => { :success => 'Article was successfully created.' })
+    else
+      flash[:error] = "Article could not be saved."
+      render :action => "new"
     end
+    
+  end
+  
+  # GET /articles/1
+  def show
+    @article = Article.find(params[:id])
+    @page_url = request.url
   end
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
-    @page_subtitle = "... my cousin works for Bit.ly"
-    session[:last_visited_page] = request.env['HTTP_REFERER']
-    #view depends on this incase the title is cleared by user and there's an error
-    @article_title = @article.title
+    @article ||= Article.find(params[:id])
   end
 
   # PUT /articles/1
-  # PUT /articles/1.xml
   def update
-    @article = Article.find(params[:id])
-    @page_subtitle = "... my cousin works for Bit.ly"
+    @article ||= Article.find(params[:id])
     
-    #overwritten by update_attributes() (potentially blank)
-    @article_title = @article.title
-    
-    respond_to do |format|
-      if @article.update_attributes(params[:article])
-        #wonder how to sync changes with the model BEFORE save
-        #then I could use @article.changed?
-        @article.increment!(:change_count)
-        
-        format.html { redirect_to(session[:last_visited_page]) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
-      end
+    if @article.update_attributes(params[:article])
+      redirect_to(session[:last_visited_page], :flash => { :success => 'Changes to article have been saved.' })
+    else
+      flash[:error] = "Changes could not be saved."
+      render :action => "edit"
     end
+
   end
 
   # DELETE /articles/1
-  # DELETE /articles/1.xml
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(articles_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(articles_url, :flash => { :success => 'Article deleted.' })
+  end
+  
+  
+private
+
+  def set_edit_return_url
+    session[:last_visited_page] = request.referer
+  end
+  
+  def preserve_article_title
+    @article = Article.find(params[:id])
+    #view depends on this incase the title is cleared by user and there's an error
+    @article_title = @article.title
   end
 end

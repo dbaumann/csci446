@@ -284,4 +284,4 @@ Article Source: http://EzineArticles.com/?expert=Bruce_Kaler_M.D.
 HERE
 }
 
-Article.create(seed_articles)
+Article.create!(seed_articles)
