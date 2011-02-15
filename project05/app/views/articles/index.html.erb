@@ -8,6 +8,8 @@
   </li>
 </ul>
 
+<%= will_paginate @articles, :class => 'paginate-controller' %>
+
 <% if @articles.size > 0 -%>
 <table id="article-list">
   <thead>
@@ -22,7 +24,7 @@
   <tfoot>
     <tr>
       <td colspan="5">
-        <p><%= pluralize(@articles.size, "article") %>.</p>
+        <p><%= page_entries_info @articles %></p>
       </td>
     </tr>
   </tfoot>

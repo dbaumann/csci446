@@ -27,7 +27,7 @@ p {
 h1 {
   font-size: 2em;
   float: left;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 h3 {
   font-size: 1.2em;
@@ -64,6 +64,10 @@ h3 {
   margin: 0px 100px;
 }
 */
+#articles.index .paginate-controller {
+  clear: both;
+  text-align: center;
+}
 
 #articles.index #article-list {
   clear: both;

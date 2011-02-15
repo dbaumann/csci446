@@ -1,5 +1,8 @@
 class Article < ActiveRecord::Base
   
+  cattr_reader :per_page
+  @@per_page = 10
+  
   validates_presence_of :title
   
   validates_presence_of :author_name
