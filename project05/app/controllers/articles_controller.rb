@@ -2,10 +2,11 @@ class ArticlesController < ApplicationController
   
   before_filter :set_edit_return_url, :only => [:edit]
   before_filter :preserve_article_title, :only => [:edit, :update]
+  before_filter :load_authors, :only => [:new, :edit, :update]
   
   # GET /articles
   def index
-    @articles = Article.paginate :page => params[:page], :order => 'created_at ASC'
+    @articles = Article.paginate :page => params[:page], :order => 'created_at ASC', :include => :author
   end
 
   # GET /articles/new
@@ -69,5 +70,9 @@ private
     @article = Article.find(params[:id])
     #view depends on this incase the title is cleared by user and there's an error
     @article_title = @article.title
+  end
+  
+  def load_authors
+    @authors = Author.all
   end
 end

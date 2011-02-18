@@ -1,0 +1,20 @@
+<% content_for :subtitle do %>
+&hellip; my cousin works for Bit.ly
+<% end %>
+
+<h1>Editing author</h1>
+
+<% form_for(@author) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @author %> |
+<%= link_to 'Back', authors_path %>

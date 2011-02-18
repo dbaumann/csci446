@@ -8,11 +8,14 @@
   </li>
 </ul>
 
-<%= will_paginate @articles, :class => 'paginate-controller' %>
-
 <% if @articles.size > 0 -%>
-<table id="article-list">
+<table id="general-list">
   <thead>
+    <tr>
+      <th colspan="5" class="paginate-controller">
+        <%= will_paginate @articles %>
+      </th>
+    </tr>
     <tr>
       <th class="title-col">Title</th>
       <th class="author-col">Author Name</th>
@@ -29,15 +32,11 @@
     </tr>
   </tfoot>
   
-  <% if @articles.size >= 10 -%>
-  <tbody class="maxed">
-  <% else -%>
   <tbody>
-  <% end -%>
   <% @articles.each do |article| %>
     <tr>
       <td class="title-col"><%=h article.title %></td>
-      <td class="author-col"><%=h article.author_name %></td>
+      <td class="author-col"><%=h article.author %></td>
       <td class="body-col"><%=h truncate(article.body, {100, '...'})  %></td>
       <td class="create-date-col"><%= article.created_at.to_s(:human_with_weekday) %></td>
       <td class="action-col">
@@ -55,4 +54,6 @@
   <% end %>
   </tbody>
 </table>
+<% else -%>
+<p>There are no articles in the database.</p>
 <% end -%>
