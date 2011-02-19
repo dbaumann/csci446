@@ -29,4 +29,6 @@
 
 <h3><%=h "by %s. %s since %s." % [@article.author, pluralize(@article.change_count, 'edit'), @article.created_at.to_s(:human)] %></h3>
 
+<%= image_tag @article.author.photo.url(:thumbnail), :class => "author-thumbnail" %>
+
 <%= wrap_links simple_format(h @article.body) %>

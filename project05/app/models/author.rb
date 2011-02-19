@@ -2,6 +2,10 @@ class Author < ActiveRecord::Base
   
   has_many :articles
   
+  has_attached_file :photo,
+                    :styles => { :thumbnail => ["150x150", :png] },
+                    :url => '/assets/:class/:attachment/:id/:style/:filename'
+  
   cattr_reader :per_page
   @@per_page = 10
   

@@ -74,6 +74,9 @@ ul#menubar li a {
   padding: 8px 16px;
   text-decoration: none;
 }
+ul#menubar li a:hover {
+  color: red;
+}
 
 table#general-list {
   clear: both;
@@ -148,6 +151,11 @@ table#general-list tfoot {
 }
 #options-basic .top-link img {
   vertical-align: middle;
+}
+
+#articles.show img.author-thumbnail {
+  float: left;
+  margin: 12px;
 }
 
 body.edit label,
