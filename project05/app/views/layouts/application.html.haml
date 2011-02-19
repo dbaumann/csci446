@@ -1,0 +1,18 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    %meta{:'http-equiv' => "Content-Type", :content => "text/html;charset=utf-8" } 
+    %title Articl.es -- All the Worlds Articles (with a name .com hipsters love)
+    = stylesheet_link_tag 'reset', 'screen'
+  %body{:class => controller.action_name, :id => controller.controller_name }
+    #banner
+      #page-title= @page_title || "Articl.es"
+      %p#page-subtitle= yield :subtitle or "&hellip; with a name .com hipsters love!"
+    - flash.each do |key, msg|
+      %div{:class => "flash #{key}"}
+        %p= msg  
+    %ul#menubar
+      %li= link_to "Articles", articles_path
+      %li= link_to "Authors", authors_path
+    #content
+      = yield
