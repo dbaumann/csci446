@@ -138,7 +138,7 @@ table#general-list tfoot {
 /* END index styles */
 
 
-/* show/edit/create styles */
+/* show/edit/new styles */
 #options-basic {
   text-align: center;
   margin-bottom: 15px;
@@ -163,7 +163,7 @@ table#general-list tfoot {
 }
 
 body.edit label,
-body.create label {
+body.new label {
   width: 9em;
   display: block;
   clear: left;
@@ -174,20 +174,20 @@ body.create label {
   text-align: right;
 }
 body.edit textarea,
-body.create textarea {
+body.new textarea {
   width: 40em;
 }
 body.edit input[type="submit"],
-body.create input[type="submit"] {
+body.new input[type="submit"] {
   display: block;
   margin-left: 12em;
 }
 body.edit form,
-body.create form {
+body.new form {
   clear: both;
   padding-top: 15px;
 }
-/* END show/edit/create styles */
+/* END show/edit/new styles */
 
 
 /* error styles */
