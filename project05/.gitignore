@@ -2,5 +2,10 @@ log/*.log
 tmp/*
 tmp/**/*
 db/*.sqlite3
+
+#images
 public/assets
+
+#most stylesheets are compiled from SASS
 public/stylesheets/*.css
+!public/stylesheets/reset.css   #except the reset stylesheet
