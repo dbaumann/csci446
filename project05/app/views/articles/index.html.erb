@@ -8,14 +8,11 @@
   </li>
 </ul>
 
+
 <% if @articles.size > 0 -%>
+<div class="paginate-controller"><%= will_paginate @articles %></div>
 <table id="general-list">
   <thead>
-    <tr>
-      <th colspan="5" class="paginate-controller">
-        <%= will_paginate @articles %>
-      </th>
-    </tr>
     <tr>
       <th class="title-col">Title</th>
       <th class="author-col">Author Name</th>
@@ -54,6 +51,7 @@
   <% end %>
   </tbody>
 </table>
+<div class="paginate-controller"><%= will_paginate @articles %></div>
 <% else -%>
 <p>There are no articles in the database.</p>
 <% end -%>

@@ -78,6 +78,15 @@ ul#menubar li a:hover {
   color: red;
 }
 
+.paginate-controller {
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 1.2em;
+}
+body#authors .paginate-controller {
+  text-align: left;
+}
+
 table#general-list {
   clear: both;
   margin-top: 15px;
@@ -100,11 +109,6 @@ table#general-list th {
   font-weight: bold;
   text-align: left;
   padding: 0.25em;
-}
-table#general-list th.paginate-controller {
-  background-color: #FFF;
-  text-align: center;
-  padding-bottom: 10px;
 }
 table#general-list th.create-date-col {
   text-align: center;
