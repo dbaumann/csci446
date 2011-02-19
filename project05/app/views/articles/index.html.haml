@@ -1,0 +1,42 @@
+%h1 All the World's Articles
+%ul#options-basic
+  %li
+    = link_to( image_tag('icons/add.png') + ' Create an Article', |
+      {:action => 'new'},                                         |
+      {:title => 'Upload an article', :class => 'top-link'})      |
+- if @articles.size > 0
+  .paginate-controller= will_paginate @articles
+  %table#general-list
+    %thead
+      %tr
+        %th.title-col Title
+        %th.author-col Author Name
+        %th.body-col Body
+        %th.create-date-col Creation Date
+        %th.action-col &nbsp;
+    %tfoot
+      %tr
+        %td{:colspan => "5"}
+          %p= page_entries_info @articles
+    %tbody
+      - @articles.each do |article|
+        %tr
+          %td.title-col= h article.title
+          %td.author-col= h article.author
+          %td.body-col= h truncate(article.body, {100, '...'})
+          %td.create-date-col= article.created_at.to_s(:human_with_weekday)
+          %td.action-col
+            = link_to image_tag('icons/zoom.png'),            |
+              {:action => 'show', :id => article},            |
+              {:alt => 'Show', :title => 'View this article'} |
+            -#
+            = link_to image_tag('icons/pencil.png'),            |
+              {:action => 'edit', :id => article},              |
+              {:alt => 'Edit', :title => 'Modify this article'} |
+            -#
+            = link_to(image_tag('icons/bin_closed.png'),                                                            |
+              {:action => 'destroy', :id => article},                                                               |
+              {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this article'}) |
+  .paginate-controller= will_paginate @articles
+- else
+  %p There are no articles in the database.

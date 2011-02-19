@@ -1,0 +1,35 @@
+%h1 All the World's Authors
+%ul#options-basic
+  %li
+    = link_to( image_tag('icons/add.png') + ' Add new Author', |
+      {:action => 'new'},                                      |
+      {:title => 'Spawn an author', :class => 'top-link'})     |
+- if @authors.size > 0
+  .paginate-controller= will_paginate @articles
+  %table#general-list
+    %thead
+      %tr
+        %th Name
+    %tfoot
+      %tr
+        %td{:colspan => "5"}
+          %p= page_entries_info @authors
+    %tbody
+      - @authors.each do |author|
+        %tr
+          %td= h author
+          %td.action-col
+            = link_to image_tag('icons/zoom.png'),           |
+              {:action => 'show', :id => author},            |
+              {:alt => 'Show', :title => 'View this author'} |
+            -#
+            = link_to image_tag('icons/pencil.png'),           |
+              {:action => 'edit', :id => author},              |
+              {:alt => 'Edit', :title => 'Modify this author'} |
+            -#
+            = link_to(image_tag('icons/bin_closed.png'),                                                           |
+              {:action => 'destroy', :id => author},                                                               |
+              {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this author'}) |
+  .paginate-controller= will_paginate @articles
+- else
+  %p There are no authors in the database.
