@@ -8,11 +8,11 @@
     #banner
       #page-title= @page_title || "Articl.es"
       %p#page-subtitle= yield :subtitle or "&hellip; with a name .com hipsters love!"
-    - flash.each do |key, msg|
-      %div{:class => "flash #{key}"}
-        %p= msg  
     %ul#menubar
-      %li= link_to "Articles", articles_path
-      %li= link_to "Authors", authors_path
+      %li= link_to "Articles", articles_path, :title => "View a listing of all articles"
+      %li= link_to "Authors", authors_path, :title => "View a listing of all authors"
     #content
+      - flash.each do |key, msg|
+        %div{:class => "flash #{key}"}
+          %p= msg  
       = yield

@@ -3,3 +3,4 @@ tmp/*
 tmp/**/*
 db/*.sqlite3
 public/assets
+public/stylesheets/*.css
