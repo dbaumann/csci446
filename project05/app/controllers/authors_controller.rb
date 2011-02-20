@@ -1,4 +1,7 @@
 class AuthorsController < ApplicationController
+  
+  before_filter :set_edit_return_url, :only => [:edit]
+  
   # GET /authors
   def index
     @authors = Author.paginate :page => params[:page], :order => 'created_at ASC'
@@ -14,8 +17,9 @@ class AuthorsController < ApplicationController
     @author = Author.new(params[:author])
 
     if @author.save
-      redirect_to(@author, :success => 'Author was successfully created.')
+      redirect_to(@author, :flash => { :success => 'Author was successfully created.' })
     else
+      flash.now[:error] = "Author could not be saved."
       render :action => "new"
     end
   end
@@ -35,8 +39,9 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
 
     if @author.update_attributes(params[:author])
-      redirect_to(@author, :success => 'Author was successfully updated.')
+      redirect_to(@author, :flash => { :success => 'Changes to article have been saved.' })
     else
+      flash.now[:error] = "Changes could not be saved."
       render :action => "edit"
     end
   end
@@ -46,6 +51,12 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
     @author.destroy
 
-    redirect_to(authors_url)
+    redirect_to(authors_url, :flash => { :success => 'Author deleted.' })
+  end
+  
+private
+  
+  def set_edit_return_url
+    session[:last_visited_page] = request.referer
   end
 end

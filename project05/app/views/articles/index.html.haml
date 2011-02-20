@@ -2,8 +2,8 @@
 %ul#options-basic
   %li
     = link_to( image_tag('icons/add.png') + ' Create an Article', |
-      {:action => 'new'},                                         |
-      {:title => 'Upload an article', :class => 'top-link'})      |
+      {:action => 'new'}, |
+      {:title => 'Upload an article'}) |
 - if @articles.size > 0
   .paginate-controller= will_paginate @articles
   %table#general-list
@@ -17,7 +17,7 @@
     %tfoot
       %tr
         %td{:colspan => "5"}
-          %p= page_entries_info @articles
+          = page_entries_info @articles
     %tbody
       - @articles.each do |article|
         %tr
@@ -26,16 +26,16 @@
           %td.body-col= h truncate(article.body, {100, '...'})
           %td.create-date-col= article.created_at.to_s(:human_with_weekday)
           %td.action-col
-            = link_to image_tag('icons/zoom.png'),            |
-              {:action => 'show', :id => article},            |
+            = link_to image_tag('icons/zoom.png'), |
+              {:action => 'show', :id => article}, |
               {:alt => 'Show', :title => 'View this article'} |
             -#
-            = link_to image_tag('icons/pencil.png'),            |
-              {:action => 'edit', :id => article},              |
+            = link_to image_tag('icons/pencil.png'), |
+              {:action => 'edit', :id => article}, |
               {:alt => 'Edit', :title => 'Modify this article'} |
             -#
-            = link_to(image_tag('icons/bin_closed.png'),                                                            |
-              {:action => 'destroy', :id => article},                                                               |
+            = link_to(image_tag('icons/bin_closed.png'), |
+              {:action => 'destroy', :id => article}, |
               {:confirm => 'Are you sure?', :method => :delete, :alt => 'Delete', :title => 'Delete this article'}) |
   .paginate-controller= will_paginate @articles
 - else

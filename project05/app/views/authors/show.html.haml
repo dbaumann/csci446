@@ -1,9 +1,26 @@
+%ul#options-basic
+  %li
+    = link_to( image_tag('icons/arrow_left.png') + ' list all authors', |
+      {:action => :index}, |
+      {:title => 'Go back to list of authors'}) |
+  %li
+    = link_to image_tag('icons/pencil.png') + ' edit', |
+      {:action => 'edit', :id => @author}, |
+      {:alt => 'Edit', :title => 'Modify this author'} |
+  %li
+    = link_to image_tag('icons/bin_closed.png') + ' delete', |
+      {:action => 'destroy', :id => @author}, |
+      {:alt => 'Delete', :title => 'Delete this author', |
+      :method => :delete, :confirm => 'Are you sure?'} |
+  %li
+    = link_to image_tag('icons/email.png') + ' email', |
+      {:subject => @author.name, :body => @page_url, |
+      :title => 'Tell a friend about this article'}
+
+- if @author.photo.exists?
+  .author-thumbnail
+    = image_tag @author.photo.url(:thumbnail)
+
 %p
   %b Name:
   = h @author.name
-%p
-  %b Photo:
-  = image_tag @author.photo.url(:thumbnail)
-= link_to 'Edit', edit_author_path(@author)
-|
-\#{link_to 'Back', authors_path}

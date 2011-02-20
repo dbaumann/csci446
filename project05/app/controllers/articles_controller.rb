@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to(@article, :flash => { :success => 'Article was successfully created.' })
     else
-      flash[:error] = "Article could not be saved."
+      flash.now[:error] = "Article could not be saved."
       render :action => "new"
     end
     
@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
     if @article.update_attributes(params[:article])
       redirect_to(session[:last_visited_page], :flash => { :success => 'Changes to article have been saved.' })
     else
-      flash[:error] = "Changes could not be saved."
+      flash.now[:error] = "Changes could not be saved."
       render :action => "edit"
     end
 

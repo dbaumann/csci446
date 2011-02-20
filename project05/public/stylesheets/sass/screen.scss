@@ -19,7 +19,6 @@ h1 {
 
 h3 {
   font-size: 1.2em;
-  clear: left;
   margin-bottom: 30px;
   font-style: italic;
 }
@@ -64,10 +63,9 @@ h3 {
 }
 
 ul#menubar {
-  clear: both;
   list-style-type: none;
   margin-bottom: 20px;
-  background-color: #EFEFEF;
+  background-color: #E3E3E3;
   border: {
     width: 1px;
     style: solid;
@@ -75,6 +73,9 @@ ul#menubar {
     left: 0px;
     right: 0px;
   }
+  -moz-box-shadow: 0em -.4em 1.5em #333;
+  -webkit-box-shadow: 0em -.4em 1.5em #333;
+  box-shadow: 0em -.4em 1.5em #333;
   font-size: 1.3em;
   
   li {
@@ -101,7 +102,7 @@ ul#menubar {
   @include rounded-box(8px);
   
   padding: 0 8px;
-  margin: 20px 0px;
+  margin: 15px 0px;
   font-weight: bold;
   border: {
     width: 1px;
@@ -127,7 +128,7 @@ ul#menubar {
   li {
     display: inline-block;
   }
-  a.top-link {
+  a {
     @include ui-link;
   
     display: inline-block;
@@ -147,10 +148,7 @@ ul#menubar {
   text-align: center;
   padding-bottom: 10px;
   font-size: 1.2em;
-  
-  body#authors & {
-    text-align: left;
-  }
+
   a {
     @include ui-link;
   }
@@ -159,6 +157,7 @@ ul#menubar {
 table#general-list {
   clear: both;
   margin-top: 15px;
+  width: 100%;
   
   //needed to calculate action-col width
   $cell_padding: 4px;
@@ -202,14 +201,13 @@ table#general-list {
     }
   }
   tfoot {
-    clear: left;
     font-weight: bold;
   }
 }
 /* END index styles */
 
 /* show/edit/new styles */
-#articles.show img.author-thumbnail {
+#articles.show .author-thumbnail {
   float: left;
   margin: 12px;
 }
@@ -237,7 +235,6 @@ body {
   }
   &.edit form,
   &.new form {
-    clear: both;
     padding-top: 15px;
   }
 }
