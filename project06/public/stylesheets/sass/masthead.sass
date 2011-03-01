@@ -1,0 +1,23 @@
+#masthead
+  :height 0px
+
+  h1
+    @include shadowed-text
+    :position relative
+    :top -85px
+    :text-align center
+    :font
+      :size 3.5em
+      :weight bold
+    :color !title_color
+
+  #user_nav
+    :position relative
+    :top -140px
+    :left !container_width / 2 - 30px
+    :text-align center
+    a
+      @include shadowed-text
+      :font-size 1.4em
+      :color !mastead_link_color
+      :font-weight bold
