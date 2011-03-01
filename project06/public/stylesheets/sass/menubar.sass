@@ -1,0 +1,17 @@
+ul#menubar
+  :list-style-type none
+  :margin-bottom 20px
+  :background-color #E3E3E3
+  :border 1px solid #999
+  :font-size 1.3em
+  
+  li
+    :display inline
+    :border-right 1px dotted #000
+    
+    &:last-child
+      :border-right none
+    a
+      @include ui-link
+      :display inline-block
+      :padding 8px 16px

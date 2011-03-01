@@ -1,0 +1,26 @@
+!!!
+%html{html_attrs}
+
+  %head
+    %title
+      = h(yield(:title) || "Untitled")
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag 'reset', 'application'
+    = yield(:head)
+
+  %body
+    #container
+      #masthead
+        %h1 Gamez
+      #menubar
+        - if show_menubar?
+          %ul#menubar
+            %li= link_to "Games", games_path, :title => "View games"
+      #content
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
+
+        - if show_title?
+          %h2=h yield(:title)
+
+        = yield

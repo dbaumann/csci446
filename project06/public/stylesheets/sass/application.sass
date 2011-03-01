@@ -1,0 +1,133 @@
+!ui_link_color = #F00
+!container_width = 800px
+
+//mixins
+@mixin rounded-box($border_radius)
+  :-moz-border-radius $border_radius
+  :border-radius $border_radius
+  
+@mixin ui-link
+  :text-decoration none
+  &:hover
+    :color !ui_link_color
+
+@mixin positioning-context
+  :position relative
+
+//main
+body
+  @include positioning-context
+  :background
+    :image url("../images/Textile-Pattern30.png")
+    :repeat repeat-x repeat-y
+    :position top left
+    
+  :font
+    :family Verdana, Helvetica, Arial
+    :size 14px
+
+@import "menubar.sass"
+
+@import "headers.sass"
+
+//index
+.paginate-controller
+  :text-align center
+  :padding-bottom 10px
+  :font-size 1.2em
+
+  a
+    @include ui-link
+
+table#general-list
+  :width 100%
+  
+  //needed to calculate action-col width
+  !cell_padding = 4px
+  !image_width = 16px
+  
+  th
+    :background-color #999
+    :font-weight bold
+    :text-align left
+    :padding $cell_padding
+    
+    &.create-date-col
+      :text-align center
+
+  td
+    :height 30px
+    :padding $cell_padding
+    
+  tbody
+    tr
+      &:nth-child(even)
+        :background-color #EDEDED
+      &:nth-child(odd)
+        :background-color #FFD452
+  
+  tfoot
+    :font-weight bold
+    :text-align center
+
+a
+  @include ui-link
+  :color #0000FF
+  img
+    :border none
+
+.clear
+  :clear both
+  :height 0
+  :overflow hidden
+
+#container
+  :width !container_width
+  :margin 0 auto
+  :background #fff
+  :padding 20px 40px
+  :border solid 1px black
+  :margin-top 80px
+
+#flash_notice,
+#flash_error
+  @include rounded-box(8px)
+  :padding 5px 8px
+  :margin 10px 0
+
+#flash_notice
+  :background-color #CFC
+  :border solid 1px #6C6
+
+#flash_error
+  :background-color #FCC
+  :border solid 1px #C66
+
+.fieldWithErrors
+  :display inline
+
+#errorExplanation
+  :width 400px
+  :border 2px solid #CF0000
+  :padding 0
+  :padding-bottom 12px
+  :margin-bottom 20px
+  :background-color #f0f0f0
+  h2
+    :text-align left
+    :padding 5px 5px 5px 15px
+    :margin 0
+    :font
+      :weight bold
+      :size 12px
+    :background-color #c00
+    :color #fff
+  p
+    :color #333
+    :margin-bottom 0
+    :padding 8px
+  ul
+    :margin 2px 24px
+    li
+      :font-size 12px
+      :list-style disc
