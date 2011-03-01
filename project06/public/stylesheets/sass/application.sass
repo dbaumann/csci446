@@ -1,3 +1,10 @@
+//http://kuler.adobe.com/#themeID/1234738
+!title_color = #FA8D1E
+!mastead_link_color = !title_color
+!list_even_color = #F9FEF9
+!list_odd_color = #B2F3FC
+
+
 !ui_link_color = #F00
 !container_width = 800px
 
@@ -5,6 +12,9 @@
 @mixin rounded-box($border_radius)
   :-moz-border-radius $border_radius
   :border-radius $border_radius
+  
+@mixin shadowed-text
+  :text-shadow 0px -2px 0px #374683
   
 @mixin ui-link
   :text-decoration none
@@ -26,9 +36,9 @@ body
     :family Verdana, Helvetica, Arial
     :size 14px
 
+@import "masthead.sass"
 @import "menubar.sass"
 
-@import "headers.sass"
 
 //index
 .paginate-controller
@@ -39,12 +49,16 @@ body
   a
     @include ui-link
 
+h2
+  :font-size 1.4em
+  :margin-bottom 30px
+  :font-style italic
+
+//main list
 table#general-list
   :width 100%
   
-  //needed to calculate action-col width
   !cell_padding = 4px
-  !image_width = 16px
   
   th
     :background-color #999
@@ -62,13 +76,31 @@ table#general-list
   tbody
     tr
       &:nth-child(even)
-        :background-color #EDEDED
+        :background-color !list_even_color
       &:nth-child(odd)
-        :background-color #FFD452
+        :background-color !list_odd_color
   
   tfoot
     :font-weight bold
     :text-align center
+
+//main form
+form
+  label, input, textarea
+    :margin-bottom 1em
+    
+  label
+    :width 14em
+    :display block
+    :clear left
+    :float left
+    :font-size 1em
+    :margin-right 1em
+    :text-align right
+    
+  input[ type="submit" ]
+    display: block
+    margin-left: 15em
 
 a
   @include ui-link
@@ -89,45 +121,5 @@ a
   :border solid 1px black
   :margin-top 80px
 
-#flash_notice,
-#flash_error
-  @include rounded-box(8px)
-  :padding 5px 8px
-  :margin 10px 0
-
-#flash_notice
-  :background-color #CFC
-  :border solid 1px #6C6
-
-#flash_error
-  :background-color #FCC
-  :border solid 1px #C66
-
-.fieldWithErrors
-  :display inline
-
-#errorExplanation
-  :width 400px
-  :border 2px solid #CF0000
-  :padding 0
-  :padding-bottom 12px
-  :margin-bottom 20px
-  :background-color #f0f0f0
-  h2
-    :text-align left
-    :padding 5px 5px 5px 15px
-    :margin 0
-    :font
-      :weight bold
-      :size 12px
-    :background-color #c00
-    :color #fff
-  p
-    :color #333
-    :margin-bottom 0
-    :padding 8px
-  ul
-    :margin 2px 24px
-    li
-      :font-size 12px
-      :list-style disc
+@import "flash_messages.sass"
+@import "errors.sass"
