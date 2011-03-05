@@ -22,4 +22,20 @@ private
     @current_user = current_user_session && current_user_session.record
   end
   
+  def require_user
+    unless current_user
+      flash[:notice] = "You must log in first."
+      redirect_to root_url
+      return false
+    end
+  end
+  
+  def require_no_user
+    if current_user
+      flash[:notice] = "You must log out first."
+      redirect_to root_url
+      return false
+    end
+  end
+  
 end
