@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Admin::UsersController < Admin::AdminController
   
   before_filter :get_roles, :only => [:new, :edit]
   

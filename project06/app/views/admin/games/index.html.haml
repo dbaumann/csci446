@@ -1,0 +1,25 @@
+- title "All Games"
+
+- if @games.size > 0
+  .paginate-controller= will_paginate @games
+  %table#general-list
+    %thead
+      %tr
+        %th Title
+        %th Rating
+        %th Date Added
+    %tfoot
+      %tr
+        %td{:colspan => 3}
+          = page_entries_info @games
+    %tbody
+      - for game in @games
+        %tr
+          %td= h game.title
+          %td= h game.rating_name
+          %td= h game.created_at.to_s(:human)
+          //%td= link_to 'Edit', edit_game_path(game)
+- else
+  %p There are no games in the database.
+
+%p= link_to "New Game", new_game_path

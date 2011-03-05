@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
+  layout 'public'  #a default to be overridden in subclasses
+  
+  
 private
   
   def current_user_session

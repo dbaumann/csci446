@@ -11,12 +11,9 @@
   %body
     #container
       #masthead
-        %h1 Gamez
+        %h1
+          =link_to "Gamez", root_url
         = render :partial => "layouts/authentication"
-      #menubar
-        - if show_menubar?
-          %ul#menubar
-            %li= link_to "Games", games_path, :title => "View games"
       #content
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
