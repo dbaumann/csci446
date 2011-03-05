@@ -9,11 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110301041519) do
+ActiveRecord::Schema.define(:version => 20110305180212) do
 
   create_table "games", :force => true do |t|
     t.string   "title",                     :null => false
     t.integer  "rating",     :default => 1, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name",        :null => false
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110301041519) do
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role_id"
   end
 
 end

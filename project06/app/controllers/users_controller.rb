@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_filter :get_roles :only => [:new, :edit]
+  
   def index
     @users = User.all
   end
@@ -30,4 +33,11 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
+  
+private
+
+  def get_roles
+    @roles = Role.all
+  end
+  
 end

@@ -17,7 +17,7 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "haml"
   config.gem "authlogic"
-  config.gem "declarative_authorization"
+  config.gem "declarative_authorization", :source => "http://gemcutter.org"
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
