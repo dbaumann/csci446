@@ -1,10 +1,9 @@
-- form_for [:member, @game] do |f|
+- form_for [:members, @game] do |f|
   = f.error_messages
   %p
     = f.label :title
     = f.text_field :title
   %p
-    = f.label :rating
-    = f.text_field :rating
+    = render :partial => 'games/rating', :locals => { :f => f }
   %p
     = f.submit

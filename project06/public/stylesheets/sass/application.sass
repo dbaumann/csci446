@@ -28,9 +28,10 @@
 body
   @include positioning-context
   :background
-    :image url("../images/Textile-Pattern30.png")
-    :repeat repeat-x repeat-y
+    :image url("../images/beach.jpg")
+    :repeat repeat-x
     :position top left
+    :color #000
     
   :font
     :family Verdana, Helvetica, Arial
@@ -86,17 +87,18 @@ table#general-list
 
 //main form
 form
-  label, input, textarea
+  label, input, textarea, select
     :margin-bottom 1em
     
   label
     :width 14em
-    :display block
-    :clear left
-    :float left
+    :position absolute
     :font-size 1em
     :margin-right 1em
     :text-align right
+  
+  input, textarea, select
+    :margin-left 15em
     
   input[ type="submit" ]
     display: block
@@ -114,9 +116,11 @@ a
   :overflow hidden
 
 #container
+  @include rounded-box(10px)
   :width !container_width
   :margin 80px auto 0px
   :background #fff
+  :opacity 0.5
   :padding 20px 40px
   :border solid 1px black
 

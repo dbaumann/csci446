@@ -1,5 +1,7 @@
 class Members::UsersController < Members::MembersController
   
+  filter_resource_access
+  
   def index
     @users = User.all
   end

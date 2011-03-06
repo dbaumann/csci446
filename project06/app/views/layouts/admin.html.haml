@@ -12,8 +12,9 @@
     #container
       #masthead
         %h1
-          =link_to "Gamez", admin_root_url
           Admin
+          = link_to "Gamez", admin_root_url
+          %span.subtitle are boring
         #user_nav
           = link_to "Edit Profile", edit_admin_user_path(:current)
           %br

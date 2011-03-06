@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :role
+  has_many :games
   
   acts_as_authentic
   
@@ -11,6 +12,10 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :role_id
+  
+  def to_s
+    first_name + " " + last_name
+  end
   
   def role_symbols
     [role.name.underscore.to_sym]

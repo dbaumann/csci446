@@ -2,6 +2,8 @@ class Admin::UsersController < Admin::AdminController
   
   before_filter :get_roles, :only => [:new, :edit]
   
+  filter_resource_access
+  
   def index
     @users = User.all
   end

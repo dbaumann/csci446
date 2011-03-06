@@ -1,4 +1,7 @@
 class Admin::RolesController < Admin::AdminController
+  
+  filter_resource_access
+  
   def index
     @roles = Role.all
   end

@@ -15,9 +15,13 @@
     %tbody
       - for game in @games
         %tr
-          %td= h game.title
+          //note to self: declarative_authorization is a nightmare to use
+          - if game.user == current_user && (permitted_to? :edit, :members_games)
+            %td= link_to h(game.title), edit_members_game_path(game), :title => "edit game"
+          - else
+            %td= h game.title
           %td= h game.rating_name
-          %td= h game.created_at.to_s(:human)
+          %td= h game.created_at.to_s(:human) + " by " + game.user.to_s
 - else
   %p There are no games in the database.
 

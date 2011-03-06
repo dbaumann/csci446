@@ -4,7 +4,6 @@
     = f.label :title
     = f.text_field :title
   %p
-    = f.label :rating
-    = f.text_field :rating
+    = render :partial => 'games/rating', :locals => { :f => f }
   %p
     = f.submit

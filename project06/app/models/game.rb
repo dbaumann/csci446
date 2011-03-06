@@ -1,5 +1,8 @@
 class Game < ActiveRecord::Base
-  attr_accessible :title, :rating
+  
+  belongs_to :user
+  
+  attr_accessible :title, :rating, :user
   
   cattr_reader :per_page
   @@per_page = 10
@@ -17,6 +20,6 @@ class Game < ActiveRecord::Base
 private
 
   def rating_is_within_range
-    errors.add(:rating, 'must be between 1 and 5') if not 1..5 === rating
+    errors.add(:rating, 'must be between 1 and 4') if not (1..4) === rating
   end
 end

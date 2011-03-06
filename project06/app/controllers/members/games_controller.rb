@@ -1,4 +1,7 @@
 class Members::GamesController < Members::MembersController
+  
+  filter_resource_access
+  
   def index
     @games = Game.paginate :page => params[:page], :order => 'created_at DESC'
   end
@@ -9,6 +12,7 @@ class Members::GamesController < Members::MembersController
 
   def create
     @game = Game.new(params[:game])
+    @game.user = current_user
     if @game.save
       flash[:notice] = "Successfully created game."
       redirect_to members_games_url
@@ -30,4 +34,5 @@ class Members::GamesController < Members::MembersController
       render :action => 'edit'
     end
   end
+  
 end
