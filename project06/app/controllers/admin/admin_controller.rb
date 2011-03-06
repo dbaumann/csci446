@@ -1,14 +1,12 @@
 class Admin::AdminController < ApplicationController
 
-  #before_filter :require_user
-  
-  #filter_access_to :all
+  before_filter :require_user
   
   layout 'admin'
   
   
   def index
-    
+    redirect_to admin_games_url
   end
   
 protected

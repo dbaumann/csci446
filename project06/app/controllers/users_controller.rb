@@ -14,7 +14,11 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Registration successful."
-      redirect_to root_url
+      if @user.is_admin?
+        redirect_to admin_root_url
+      else
+        redirect_to root_url
+      end
     else
       render :action => 'new'
     end

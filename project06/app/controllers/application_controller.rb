@@ -14,10 +14,19 @@ class ApplicationController < ActionController::Base
   
   before_filter { |c| Authorization.current_user = c.current_user }
   
+  filter_access_to :all
+  
   #made public to support decalarative_authorization (see above)
   def current_user
     return @current_user if defined? @current_user
     @current_user = current_user_session && current_user_session.record
+  end
+
+protected
+
+  def permission_denied
+    flash[:error] = "You do not have access to #{request.path}"
+    redirect_to root_url
   end
   
 private

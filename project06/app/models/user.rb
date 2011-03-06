@@ -13,8 +13,11 @@ class User < ActiveRecord::Base
   validates_presence_of :role_id
   
   def role_symbols
-    [:admin]
-    #[role.name.underscore.to_sym]
+    [role.name.underscore.to_sym]
+  end
+  
+  def is_admin?
+    role_symbols.include? :admin
   end
   
 end
