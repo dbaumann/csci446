@@ -18,8 +18,7 @@
           %td= h game.title
           %td= h game.rating_name
           %td= h game.created_at.to_s(:human)
-          //%td= link_to 'Edit', edit_game_path(game)
 - else
   %p There are no games in the database.
 
-%p= link_to "New Game", new_game_path
+%p= link_to "New Game", new_admin_game_path

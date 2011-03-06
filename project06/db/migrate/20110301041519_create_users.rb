@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
+      t.integer :role_id
       t.string :username, :null => false
       t.string :email, :null => false
       t.string :first_name, :null => false
