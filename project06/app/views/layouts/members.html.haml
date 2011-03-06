@@ -12,17 +12,15 @@
     #container
       #masthead
         %h1
-          =link_to "Gamez", admin_root_url
-          Admin
+          =link_to "Gamez", members_root_url
         #user_nav
-          = link_to "Edit Profile", edit_admin_user_path(:current)
+          = link_to "Edit Profile", edit_members_user_path(:current)
           %br
           = link_to "Logout", logout_path
       #menubar
         %ul#menubar
-          %li= link_to "Games", admin_games_path, :title => "View games"
-          %li= link_to "Users", admin_users_path, :title => "View users"
-          %li= link_to "Roles", admin_roles_path, :title => "View roles"
+          %li= link_to "Games", members_games_path, :title => "View games"
+          %li= link_to "Users", members_users_path, :title => "View users"
       #content
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"

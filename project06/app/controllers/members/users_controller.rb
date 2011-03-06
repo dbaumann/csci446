@@ -1,6 +1,4 @@
-class Admin::UsersController < Admin::AdminController
-  
-  before_filter :get_roles, :only => [:new, :edit]
+class Members::UsersController < Members::MembersController
   
   def index
     @users = User.all
@@ -14,7 +12,7 @@ class Admin::UsersController < Admin::AdminController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Registration successful."
-      redirect_to admin_users_url
+      redirect_to members_root_url
     else
       render :action => 'new'
     end
@@ -28,16 +26,10 @@ class Admin::UsersController < Admin::AdminController
     @user = current_user
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated user."
-      redirect_to admin_users_url
+      redirect_to members_root_url
     else
       render :action => 'edit'
     end
-  end
-  
-private
-
-  def get_roles
-    @roles = Role.all
   end
   
 end

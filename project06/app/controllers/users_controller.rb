@@ -16,6 +16,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Registration successful."
       if @user.is_admin?
         redirect_to admin_root_url
+      elsif @user.is_member?
+        redirect_to members_root_url
       else
         redirect_to root_url
       end

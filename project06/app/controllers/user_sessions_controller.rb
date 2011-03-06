@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Successfully logged in."
-      root_redirect
+      redirect_to root_url_by_context
     else
       render :action => 'new'
     end
@@ -22,14 +22,15 @@ class UserSessionsController < ApplicationController
     flash[:notice] = "Successfully logged out."
     redirect_to root_url
   end
-
-private
-
-  def root_redirect
-    if UserSession.find.record.is_admin?
-      redirect_to admin_root_url
+  
+  def root_url_by_context
+    user = UserSession.find.record
+    if user.is_admin?
+      admin_root_url
+    elsif user.is_member?
+      members_root_url
     else
-      redirect_to root_url
+      root_url
     end
   end
   

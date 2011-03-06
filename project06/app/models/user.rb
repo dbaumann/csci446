@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     role_symbols.include? :admin
   end
   
+  def is_member?
+    role_symbols.include? :member
+  end
+  
 end

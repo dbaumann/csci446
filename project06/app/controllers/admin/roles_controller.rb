@@ -15,7 +15,7 @@ class Admin::RolesController < Admin::AdminController
     @role = Role.new(params[:role])
     if @role.save
       flash[:notice] = "Successfully created role."
-      redirect_to admin_roles_path
+      redirect_to admin_roles_url
     else
       render :action => 'new'
     end

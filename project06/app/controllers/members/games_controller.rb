@@ -1,4 +1,4 @@
-class Admin::GamesController < Admin::AdminController
+class Members::GamesController < Members::MembersController
   def index
     @games = Game.paginate :page => params[:page], :order => 'created_at DESC'
   end
@@ -11,7 +11,7 @@ class Admin::GamesController < Admin::AdminController
     @game = Game.new(params[:game])
     if @game.save
       flash[:notice] = "Successfully created game."
-      redirect_to admin_games_url
+      redirect_to members_games_url
     else
       render :action => 'new'
     end
@@ -25,7 +25,7 @@ class Admin::GamesController < Admin::AdminController
     @game = Game.find(params[:id])
     if @game.update_attributes(params[:game])
       flash[:notice] = "Successfully updated game."
-      redirect_to admin_games_url
+      redirect_to members_games_url
     else
       render :action => 'edit'
     end

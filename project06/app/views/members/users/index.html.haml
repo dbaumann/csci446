@@ -1,0 +1,19 @@
+- title "Users"
+
+%table
+  %tr
+    %th Username
+    %th Firstname
+    %th Lastname
+    %th Password
+    %th Email
+  - for user in @users
+    %tr
+      %td= h user.username
+      %td= h user.first_name
+      %td= h user.last_name
+      %td= h user.password
+      %td= h user.email
+      %td= link_to 'Edit', edit_members_user_path(user)
+
+%p= link_to "New User", new_members_user_path
