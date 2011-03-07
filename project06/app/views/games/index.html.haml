@@ -17,7 +17,6 @@
         %tr
           %td= h game.title
           %td= h game.rating_name
-          %td= h game.created_at.to_s(:human)
-          //%td= link_to 'Edit', edit_game_path(game)
+          %td= h game.created_at.to_s(:human) + " by " + game.user.to_s
 - else
   %p There are no games in the database.

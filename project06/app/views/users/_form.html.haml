@@ -19,8 +19,4 @@
     = f.label :email
     = f.text_field :email
   %p
-    = f.label :role_id
-    = f.select :role_id, @roles.collect { |role| [role.name, role.id]}
-  %br/
-  %p
-    = f.submit
+    = f.submit "Create Account"

@@ -1,13 +1,15 @@
 #masthead
+  :position relative
+  :top -100px
   :height 0px
   
   a
     :color !mastead_link_color
+    &:hover
+      :color blue
 
   h1
     @include shadowed-text
-    :position relative
-    :top -85px
     :text-align center
     :font
       :size 3.5em
@@ -18,11 +20,12 @@
       :font-size 0.5em
 
   #user_nav
+    :width 220px
+    :font-size 1.3em
     :position relative
-    :top -130px
-    :left !container_width / 2 - 30px
-    :text-align center
+    :top -75px
+    :left !container_width - 170px
+    :text-align left
     a
       @include shadowed-text
-      :font-size 1.4em
       :font-weight bold

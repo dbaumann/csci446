@@ -9,9 +9,11 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-      flash[:notice] = "Successfully logged in."
+      user = UserSession.find.record
+      flash[:notice] = "Welcome back, #{user}."
       redirect_to root_url_by_context
     else
+      flash[:error] = "Could not log in."
       render :action => 'new'
     end
   end

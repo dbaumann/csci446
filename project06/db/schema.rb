@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110306182021) do
+ActiveRecord::Schema.define(:version => 20110306224613) do
 
   create_table "games", :force => true do |t|
     t.string   "title",                     :null => false
@@ -28,15 +28,19 @@ ActiveRecord::Schema.define(:version => 20110306182021) do
 
   create_table "users", :force => true do |t|
     t.integer  "role_id"
-    t.string   "username",          :null => false
-    t.string   "email",             :null => false
-    t.string   "first_name",        :null => false
-    t.string   "last_name",         :null => false
+    t.string   "username",           :null => false
+    t.string   "email",              :null => false
+    t.string   "first_name",         :null => false
+    t.string   "last_name",          :null => false
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
 end

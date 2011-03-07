@@ -1,4 +1,5 @@
-- title "All Games"
+- title(@total_games.to_s + " Total Games")
+%p= link_to "Add a game", new_admin_game_path
 
 - if @games.size > 0
   .paginate-controller= will_paginate @games
@@ -17,8 +18,11 @@
         %tr
           %td= link_to game.title, edit_admin_game_path(game), :title => "edit game"
           %td= h game.rating_name
-          %td= h game.created_at.to_s(:human) + " by " + game.user.to_s
+          %td
+            = h game.created_at.to_s(:human) + " by "
+            - if game.user==current_user
+              = "me"
+            - else
+              = link_to game.user.to_s, edit_admin_user_path(game.user)
 - else
   %p There are no games in the database.
-
-%p= link_to "New Game", new_admin_game_path

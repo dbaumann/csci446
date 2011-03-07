@@ -1,4 +1,5 @@
-- title "All Games"
+- title "My Games"
+%p= link_to "add a new game", new_members_game_path
 
 - if @games.size > 0
   .paginate-controller= will_paginate @games
@@ -21,8 +22,6 @@
           - else
             %td= h game.title
           %td= h game.rating_name
-          %td= h game.created_at.to_s(:human) + " by " + game.user.to_s
+          %td= h game.created_at.to_s(:human) + " by " + (game.user==current_user ? "me":game.user.to_s)
 - else
   %p There are no games in the database.
-
-%p= link_to "New Game", new_members_game_path

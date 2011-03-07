@@ -1,8 +1,8 @@
-- form_for [:member, @user] do |f|
+- form_for([:members, @user], :html => {:multipart => true}) do |f|
   = f.error_messages
   %p
     = f.label :username
-    = f.text_field :username
+    = f.text_field :username, :disabled => true
   %p
     = f.label :password
     = f.password_field :password
@@ -18,5 +18,8 @@
   %p
     = f.label :email
     = f.text_field :email
+  %p
+    = f.label :photo
+    = f.file_field :photo
   %p
     = f.submit

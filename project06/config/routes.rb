@@ -13,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.namespace :members do |members|
+    members.me "me", :controller => 'users', :action => 'edit'
     members.resources :users
     members.resources :games
     members.root :controller => 'members', :action => 'index'

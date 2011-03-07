@@ -8,20 +8,21 @@
     = stylesheet_link_tag 'reset', 'application'
     = yield(:head)
 
-  %body
+  %body{:class => controller.action_name, :id => controller.controller_name }
     #container
       #masthead
         %h1
-          =link_to "Gamez", members_root_url
-          %span.subtitle are boring
+          =link_to "Gamez", root_url
+          %br/
+          %span.subtitle is boring
         #user_nav
-          = link_to "Edit Profile", edit_members_user_path(:current)
-          %br
+          = "Member Logged in as:"
+          %br/
+          = link_to current_user, members_me_path
+          %br/
+          = link_to "My Games", members_root_url
+          %br/
           = link_to "Logout", logout_path
-      #menubar
-        %ul#menubar
-          %li= link_to "Games", members_games_path, :title => "View games"
-          %li= link_to "Users", members_users_path, :title => "View users"
       #content
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"

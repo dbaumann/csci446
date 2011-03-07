@@ -8,14 +8,16 @@
     = stylesheet_link_tag 'reset', 'application'
     = yield(:head)
 
-  %body
+  %body{:class => controller.action_name, :id => controller.controller_name }
     #container
       #masthead
         %h1
           =link_to "Gamez", root_url
         #user_nav
+          %br/
+          %br/
           = link_to "Register", new_user_path
-          %br
+          %br/
           = link_to "Login", login_path
       #content
         - flash.each do |name, msg|

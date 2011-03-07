@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::AdminController
   
-  before_filter :get_roles, :only => [:new, :edit]
+  before_filter :get_roles, :only => [:new, :create, :edit, :update]
   
   filter_resource_access
   
@@ -23,11 +23,11 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated user."
       redirect_to admin_users_url

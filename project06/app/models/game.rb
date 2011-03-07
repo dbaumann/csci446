@@ -17,6 +17,10 @@ class Game < ActiveRecord::Base
     ratings[rating-1] #indexed from 1 in the database
   end
   
+  def to_s
+    title
+  end
+  
 private
 
   def rating_is_within_range

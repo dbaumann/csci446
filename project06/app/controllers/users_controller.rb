@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  before_filter :get_roles, :only => [:new, :edit]
-
   def index
     @users = User.all
   end
@@ -12,8 +10,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.role = get_member_role
     if @user.save
-      flash[:notice] = "Registration successful."
+      flash[:notice] = "Welcome, #{@user}."
       if @user.is_admin?
         redirect_to admin_root_url
       elsif @user.is_member?
@@ -22,14 +21,15 @@ class UsersController < ApplicationController
         redirect_to root_url
       end
     else
+      flash[:error] = "Sorry, could not register you."
       render :action => 'new'
     end
   end
   
 private
 
-  def get_roles
-    @roles = Role.all
+  def get_member_role
+    Role.find_by_name('Member')
   end
 
 end

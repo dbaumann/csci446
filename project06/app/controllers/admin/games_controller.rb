@@ -3,7 +3,8 @@ class Admin::GamesController < Admin::AdminController
   filter_resource_access
   
   def index
-    @games = Game.paginate :page => params[:page], :order => 'created_at DESC'
+    @total_games = Game.count
+    @games = Game.paginate :page => params[:page], :order => 'created_at DESC', :include => :user
   end
 
   def new
@@ -12,6 +13,7 @@ class Admin::GamesController < Admin::AdminController
 
   def create
     @game = Game.new(params[:game])
+    @game.user = current_user
     if @game.save
       flash[:notice] = "Successfully created game."
       redirect_to admin_games_url
