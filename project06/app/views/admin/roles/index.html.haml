@@ -1,15 +1,16 @@
 - title "Roles"
-
-%table
-  %tr
-    %th Name
-    %th Description
-  - for role in @roles
-    %tr
-      %td= h role.name
-      %td= h role.description
-      %td= link_to 'Show', [:admin, role]
-      %td= link_to 'Edit', edit_admin_role_path(role)
-      %td= link_to 'Destroy', [:admin, role], :confirm => 'Are you sure?', :method => :delete
-
-%p= link_to "New Role", new_admin_role_path
+%p= link_to "Add a role", new_admin_role_path
+%br/
+- if @roles.size > 0
+  %table#general-list
+    %thead
+      %tr
+        %th Name
+        %th Number of Users
+    %tbody
+      - for role in @roles
+        %tr
+          %td= link_to role.to_s, edit_admin_role_path(role)
+          %td= h role.users_count
+- else
+  %p There are no roles in the database.

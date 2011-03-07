@@ -1,19 +1,18 @@
 - title "Users"
 
-%table
-  %tr
-    %th Username
-    %th Firstname
-    %th Lastname
-    %th Password
-    %th Email
-  - for user in @users
-    %tr
-      %td= h user.username
-      %td= h user.first_name
-      %td= h user.last_name
-      %td= h user.password
-      %td= h user.email
-      %td= link_to 'Edit', edit_admin_user_path(user)
-
-%p= link_to "New User", new_admin_user_path
+- if @users.size > 0
+  .paginate-controller= will_paginate @users
+  %table#general-list
+    %thead
+      %tr
+        %th Name
+        %th Username
+        %th Number of Games
+    %tbody
+      - for user in @users
+        %tr
+          %td= link_to user.to_s, edit_admin_user_path(user)
+          %td= h user.username
+          %td= h user.games_count
+- else
+  %p There are no users in the database.

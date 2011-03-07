@@ -5,21 +5,7 @@ class Admin::UsersController < Admin::AdminController
   filter_resource_access
   
   def index
-    @users = User.all
-  end
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(params[:user])
-    if @user.save
-      flash[:notice] = "Registration successful."
-      redirect_to admin_users_url
-    else
-      render :action => 'new'
-    end
+    @users = User.paginate :page => params[:page], :order => 'last_name ASC'
   end
 
   def edit
@@ -29,9 +15,10 @@ class Admin::UsersController < Admin::AdminController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Successfully updated user."
+      flash[:notice] = "Successfully updated profile."
       redirect_to admin_users_url
     else
+      flash[:error] = "Could not save profile."
       render :action => 'edit'
     end
   end

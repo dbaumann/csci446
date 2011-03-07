@@ -1,6 +1,6 @@
 - title(@total_games.to_s + " Total Games")
 %p= link_to "Add a game", new_admin_game_path
-
+%br/
 - if @games.size > 0
   .paginate-controller= will_paginate @games
   %table#general-list

@@ -1,8 +1,8 @@
 class Game < ActiveRecord::Base
   
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   
-  attr_accessible :title, :rating, :user
+  attr_accessible :title, :rating, :user_id
   
   cattr_reader :per_page
   @@per_page = 10

@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
-  belongs_to :role
+  #too bad that rails doesn't update this when a user switches from one role to another
+  belongs_to :role, :counter_cache => true
   has_many :games
+  
+  cattr_reader :per_page
+  @@per_page = 5
   
   #this only works some of the time
   has_attached_file :photo,

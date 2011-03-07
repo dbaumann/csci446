@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110306224613) do
+ActiveRecord::Schema.define(:version => 20110307065018) do
 
   create_table "games", :force => true do |t|
     t.string   "title",                     :null => false
@@ -20,18 +20,19 @@ ActiveRecord::Schema.define(:version => 20110306224613) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "name",        :null => false
+    t.string   "name",                       :null => false
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "users_count", :default => 0
   end
 
   create_table "users", :force => true do |t|
     t.integer  "role_id"
-    t.string   "username",           :null => false
-    t.string   "email",              :null => false
-    t.string   "first_name",         :null => false
-    t.string   "last_name",          :null => false
+    t.string   "username",                          :null => false
+    t.string   "email",                             :null => false
+    t.string   "first_name",                        :null => false
+    t.string   "last_name",                         :null => false
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20110306224613) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "games_count",        :default => 0
   end
 
 end

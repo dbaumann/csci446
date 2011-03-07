@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 private
 
   def get_member_role
-    Role.find_by_name('Member')
+    Role.find_by_username('member')
   end
 
 end
